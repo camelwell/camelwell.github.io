@@ -42,7 +42,7 @@
             right: 0;
             top: 120%;
             background-color: var(--soft-blush);
-            min-width: 250px;
+            min-width: 260px;
             box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
             z-index: 1;
             border-radius: 8px;
@@ -55,17 +55,12 @@
         .contact-content a { font-weight: bold; }
         .contact-content a:hover { color: var(--ink-black); text-decoration: underline; }
 
-        /* Copy Button */
-        .copy-btn {
-            background: none;
-            border: none;
-            cursor: pointer;
-            font-size: 1.1rem;
-            margin-left: 8px;
-            padding: 0;
-            transition: transform 0.2s ease;
-        }
+        /* Copy Button & Fade Text */
+        .copy-container { display: inline-flex; align-items: center; position: relative; }
+        .copy-btn { background: none; border: none; cursor: pointer; font-size: 1.1rem; margin-left: 8px; padding: 0; transition: transform 0.2s ease; }
         .copy-btn:hover { transform: scale(1.2); }
+        .copy-msg { font-size: 0.85rem; color: #2e7d32; font-weight: bold; margin-left: 8px; opacity: 0; transition: opacity 0.3s ease; pointer-events: none; }
+        .copy-msg.show { opacity: 1; }
 
         /* Projects Page Specific Styles */
         .page-header { background-color: var(--blue-slate); color: var(--soft-blush); padding: 60px 5%; text-align: center; }
@@ -76,9 +71,13 @@
         .project-card { background-color: white; border: 1px solid var(--cool-steel); border-radius: 8px; overflow: hidden; margin-bottom: 40px; box-shadow: 0 4px 6px rgba(0,0,0,0.05); display: flex; flex-direction: column; }
         @media (min-width: 768px) { .project-card { flex-direction: row; } }
         
-        .project-image { background-color: var(--soft-blush); min-height: 200px; display: flex; align-items: center; justify-content: center; color: var(--blue-slate); font-weight: bold; flex: 1; border-bottom: 1px solid var(--cool-steel); }
-        @media (min-width: 768px) { .project-image { border-bottom: none; border-right: 1px solid var(--cool-steel); max-width: 350px; } }
+        .project-media { background-color: var(--ink-black); display: flex; align-items: center; justify-content: center; flex: 1; border-bottom: 1px solid var(--cool-steel); overflow: hidden; position: relative;}
+        @media (min-width: 768px) { .project-media { border-bottom: none; border-right: 1px solid var(--cool-steel); max-width: 400px; min-height: 250px; } }
         
+        .project-media img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.3s ease; }
+        .project-media img:hover { transform: scale(1.02); }
+        .project-media iframe { width: 100%; height: 100%; border: none; min-height: 250px; }
+
         .project-details { padding: 30px; flex: 2; }
         .project-details h3 { color: var(--ink-black); margin-top: 0; font-size: 1.5rem; }
         .tech-stack { display: flex; gap: 10px; margin-bottom: 15px; flex-wrap: wrap; }
@@ -106,7 +105,10 @@
             <div class="contact-content" id="contactDropdown">
                 <p>
                     <strong>Email:</strong> &nbsp;<a href="mailto:camdenelwell@gmail.com">camdenelwell@gmail.com</a>
-                    <button class="copy-btn" onclick="copyEmail(event)" title="Copy Email">📋</button>
+                    <span class="copy-container">
+                        <button class="copy-btn" onclick="copyEmail(event)" title="Copy Email">📋</button>
+                        <span class="copy-msg" id="copyMsg">Copied!</span>
+                    </span>
                 </p>
                 <p><strong>Phone:</strong> &nbsp;(772) 643-5646</p>
                 <p><strong>Location:</strong> &nbsp;Tallahassee, FL</p>
@@ -116,52 +118,53 @@
 
     <header class="page-header">
         <h1>Project Portfolio</h1>
-        <p>A showcase of technical implementations, software development, and digital media solutions.</p>
+        <p>A showcase of mobile app development, virtual reality environments, and digital media design.</p>
     </header>
 
     <section class="container">
         
         <div class="project-card">
-            <div class="project-image">
-                [Insert Screenshot / Image Here]
+            <div class="project-media">
+                <img src="rss-feed.gif" alt="Android RSS Feed App Demonstration">
             </div>
             <div class="project-details">
-                <h3>Python Data Analysis Script</h3>
+                <h3>Android Mobile Development & RSS Reader</h3>
                 <div class="tech-stack">
-                    <span class="tech-badge">Python</span>
-                    <span class="tech-badge">Git</span>
-                    <span class="tech-badge">Data Analysis</span>
+                    <span class="tech-badge">Java / Android</span>
+                    <span class="tech-badge">Bitbucket</span>
+                    <span class="tech-badge">Git Version Control</span>
                 </div>
-                <p>Developed a script to automate [Insert Problem Here]. By utilizing [Insert Libraries/Concepts], I was able to reduce processing time and deliver cleaner datasets for evaluation. This project required a deep understanding of logical data structures.</p>
+                <p>Developed and maintained a suite of Android applications across two comprehensive coursework libraries hosted on Bitbucket. The featured application is a functional RSS Feed Reader focused on clean UI/UX and efficient data parsing. This ongoing development highlights strong version control practices and mobile software engineering logic.</p>
             </div>
         </div>
 
         <div class="project-card">
-            <div class="project-image">
-                [Insert Screenshot / Image Here]
+            <div class="project-media">
+                <iframe src="https://www.youtube.com/embed/YOUR_VIDEO_ID_HERE" title="Unity VR Project Demo" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
             </div>
             <div class="project-details">
-                <h3>Esports OBS Broadcast Setup</h3>
+                <h3>Immersive VR Environment</h3>
                 <div class="tech-stack">
-                    <span class="tech-badge">OBS Studio</span>
-                    <span class="tech-badge">Network Configuration</span>
-                    <span class="tech-badge">Hardware</span>
+                    <span class="tech-badge">Unity 3D</span>
+                    <span class="tech-badge">Virtual Reality</span>
+                    <span class="tech-badge">C# Scripting</span>
                 </div>
-                <p>Configured and optimized the broadcast environment for live streaming. Managed scene switching, audio routing, and network stability to ensure high-fidelity transmission with minimal latency during competitive events.</p>
+                <p>Designed and engineered an interactive Virtual Reality environment using Unity. This project required balancing logical game-engine mechanics with spatial design to create a seamless user experience. It demonstrates my ability to adopt emerging technologies and build highly immersive, performance-optimized digital spaces.</p>
             </div>
         </div>
 
         <div class="project-card">
-            <div class="project-image">
-                [Insert Screenshot / Image Here]
+            <div class="project-media">
+                <img src="photoshop-project.png" alt="Advanced Photoshop Digital Compositing">
             </div>
             <div class="project-details">
-                <h3>Digital Media & Brand Asset Design</h3>
+                <h3>Advanced Digital Compositing</h3>
                 <div class="tech-stack">
                     <span class="tech-badge">Adobe Photoshop</span>
-                    <span class="tech-badge">Adobe Illustrator</span>
+                    <span class="tech-badge">Graphic Design</span>
+                    <span class="tech-badge">Visual Communication</span>
                 </div>
-                <p>Created comprehensive digital assets including transparent vector graphics and promotional materials. Utilized non-destructive editing techniques such as layer masking and knockouts to ensure assets remained versatile for web and print.</p>
+                <p>A personal project highlighting my Adobe Certified proficiency in Photoshop. By utilizing non-destructive editing workflows, advanced layer masking, and color grading, I created a professional-grade digital asset. This piece illustrates my strong eye for visual communication, proving I can bridge the gap between technical IT infrastructure and front-end creative media.</p>
             </div>
         </div>
 
@@ -172,7 +175,6 @@
     </footer>
 
     <script>
-        // Dropdown toggle logic
         document.addEventListener('DOMContentLoaded', function() {
             const btn = document.getElementById('contactBtn');
             const dropdown = document.getElementById('contactDropdown');
@@ -192,14 +194,21 @@
             });
         });
 
-        // Copy Email Logic
         function copyEmail(event) {
             event.preventDefault();
             navigator.clipboard.writeText('camdenelwell@gmail.com');
-            const btn = event.target;
+            const btn = event.currentTarget;
             const originalText = btn.innerText;
+            const msg = document.getElementById('copyMsg');
+            
             btn.innerText = '✅';
-            setTimeout(() => { btn.innerText = originalText; }, 2000);
+            msg.classList.add('show');
+            
+            setTimeout(() => { 
+                btn.innerText = originalText; 
+                msg.classList.remove('show');
+            }, 2000); 
+            
             event.stopPropagation(); 
         }
     </script>

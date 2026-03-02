@@ -14,7 +14,11 @@
             --desert-sand: #e4c3ad;
         }
 
-        /* Global Styles */
+        /* Global Styles & Smooth Scrolling */
+        html {
+            scroll-behavior: smooth;
+        }
+
         body {
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
             margin: 0;
@@ -30,10 +34,6 @@
             transition: color 0.3s ease;
         }
 
-        a:hover {
-            color: var(--desert-sand);
-        }
-
         /* Navigation */
         nav {
             background-color: var(--ink-black);
@@ -41,6 +41,9 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
         }
 
         nav h1 {
@@ -49,28 +52,46 @@
             font-size: 1.5rem;
         }
 
-        nav ul {
-            list-style: none;
+        /* Contact Dropdown */
+        .contact-dropdown {
+            position: relative;
+            display: inline-block;
+        }
+
+        .contact-dropdown .btn {
             margin: 0;
-            padding: 0;
-            display: flex;
-            gap: 20px;
+            padding: 8px 20px;
         }
 
-        nav a {
-            color: var(--desert-sand);
-            font-weight: bold;
+        .contact-content {
+            display: none;
+            position: absolute;
+            right: 0;
+            top: 120%;
+            background-color: var(--soft-blush);
+            min-width: 240px;
+            box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+            z-index: 1;
+            border-radius: 8px;
+            padding: 20px;
+            border: 2px solid var(--desert-sand);
         }
 
-        nav a:hover {
-            color: var(--soft-blush);
+        .contact-dropdown:hover .contact-content {
+            display: block;
         }
 
-        /* Hero Section (Brand YOU) */
+        .contact-content p {
+            margin: 8px 0;
+            color: var(--ink-black);
+            font-size: 0.95rem;
+        }
+
+        /* Hero Section */
         .hero {
             background-color: var(--blue-slate);
             color: var(--soft-blush);
-            padding: 80px 5%;
+            padding: 100px 5%;
             text-align: center;
         }
 
@@ -87,6 +108,14 @@
             color: #ffffff;
         }
 
+        .hero-links {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            margin-top: 30px;
+            flex-wrap: wrap;
+        }
+
         .btn {
             background-color: var(--desert-sand);
             color: var(--ink-black);
@@ -95,18 +124,20 @@
             font-weight: bold;
             display: inline-block;
             border: 2px solid transparent;
+            cursor: pointer;
+            transition: all 0.3s ease;
         }
 
         .btn:hover {
-            background-color: transparent;
+            background-color: var(--soft-blush);
             border-color: var(--desert-sand);
-            color: var(--desert-sand);
+            color: var(--ink-black);
         }
 
         /* Container for Sections */
         .container {
-            padding: 60px 5%;
-            max-width: 1200px;
+            padding: 80px 5%;
+            max-width: 1000px;
             margin: auto;
         }
 
@@ -118,6 +149,12 @@
             border-bottom: 3px solid var(--cool-steel);
             display: inline-block;
             padding-bottom: 10px;
+        }
+
+        /* About Section */
+        #about p {
+            font-size: 1.1rem;
+            text-align: justify;
         }
 
         /* Skills Grid */
@@ -146,19 +183,27 @@
             color: var(--ink-black);
         }
 
-        /* Experience Teaser */
+        /* Experience Cards */
         .experience-card {
             background-color: white;
             border: 1px solid var(--cool-steel);
             padding: 25px;
             margin-bottom: 20px;
             border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.05);
         }
 
         .experience-card h4 {
             color: var(--blue-slate);
-            margin: 0 0 10px 0;
+            margin: 0 0 5px 0;
             font-size: 1.4rem;
+        }
+        
+        .experience-card .date-location {
+            color: var(--cool-steel);
+            font-style: italic;
+            margin-bottom: 15px;
+            font-size: 0.95rem;
         }
 
         /* Footer */
@@ -166,7 +211,7 @@
             background-color: var(--ink-black);
             color: var(--cool-steel);
             text-align: center;
-            padding: 20px 5%;
+            padding: 30px 5%;
             margin-top: 40px;
         }
 
@@ -176,15 +221,84 @@
 
     <nav>
         <h1>Camden Elwell</h1>
-        <ul>
-            <li><a href="#about">About</a></li>
-            <li><a href="#skills">Skills</a></li>
-            <li><a href="#experience">Experience</a></li>
-        </ul>
+        <div class="contact-dropdown">
+            <span class="btn">Contact Info</span>
+            <div class="contact-content">
+                <p><strong>Email:</strong> camdenelwell@gmail.com</p>
+                <p><strong>Phone:</strong> (772) 643-5646</p>
+                <p><strong>Location:</strong> Vero Beach, FL</p>
+            </div>
+        </div>
     </nav>
 
     <header class="hero">
         <h2>Information Technology Professional</h2>
         <p>A driven BS/MS IT student specializing in technical support, network capabilities, and full-stack software development. Blending innovation and communication to solve complex technical challenges.</p>
-        <a href="#experience" class="btn">Explore My Work</a>
-    </
+        
+        <div class="hero-links">
+            <a href="#about" class="btn">About Me</a>
+            <a href="#skills" class="btn">Skills</a>
+            <a href="#experience" class="btn">Experience</a>
+        </div>
+    </header>
+
+    <section id="about" class="container">
+        <center><h2 class="section-title">About Me</h2></center>
+        <p>I am currently a student at the Florida State University Honors College, pursuing a Bachelor of Science and Master of Science in Information Technology through the Combined Pathways Program. With dual minors in Innovation and Communication, I bring a unique blend of technical proficiency and strategic problem-solving to every project I undertake. My academic excellence is reflected in a 3.885 GPA and consistent placement on the Dean's List. Whether evaluating software systems for accounting firms or engineering complex audio-visual setups for live productions, I am dedicated to driving efficiency through technology.</p>
+    </section>
+
+    <section id="skills" class="container text-center">
+        <center><h2 class="section-title">Technical Competencies</h2></center>
+        <div class="skills-grid">
+            <div class="skill-card">
+                <h3>Programming</h3>
+                <p>Python, Java, JavaScript, R</p>
+            </div>
+            <div class="skill-card">
+                <h3>Creative & Media</h3>
+                <p>Adobe Photoshop & Premiere (Certified), Illustrator, InDesign, Unity, Blender</p>
+            </div>
+            <div class="skill-card">
+                <h3>Tools & Administration</h3>
+                <p>Git, OBS Studio, Microsoft Office Products</p>
+            </div>
+        </div>
+    </section>
+
+    <section id="experience" class="container">
+        <center><h2 class="section-title">Professional Experience</h2></center>
+        
+        <div class="experience-card">
+            <h4>IT Accounting Intern</h4>
+            <div class="date-location">Kmetz, Elwell, Graham & Associates | Vero Beach, FL | Jan 2022 - Sept 2023</div>
+            <ul>
+                <li>Provided support to a 30-employee accounting firm with software and hardware applications.</li>
+                <li>Reviewed system and network capabilities for upgrade recommendations and maintained firm-wide schedules to ensure due date compliance.</li>
+            </ul>
+        </div>
+
+        <div class="experience-card">
+            <h4>Student Worker (Tech Support)</h4>
+            <div class="date-location">School District of Indian River County | Vero Beach, FL | Mar 2022 - Aug 2023</div>
+            <ul>
+                <li>Controlled light boards, ran tech support, and managed light and spot focusing.</li>
+                <li>Initiated musical tracks, soundscapes, and microphones for live performers.</li>
+            </ul>
+        </div>
+
+        <div class="experience-card">
+            <h4>Technical Crew</h4>
+            <div class="date-location">Vero Beach High School Drama Department | Vero Beach, FL | Sept 2019 - May 2023</div>
+            <ul>
+                <li>Supported show performances by moving set pieces, managing curtains, and executing clean-up operations.</li>
+                <li>Built sets, ensured backstage safety protocols, and meticulously tracked props.</li>
+            </ul>
+        </div>
+    </section>
+
+    <footer>
+        <p>&copy; 2026 Camden Elwell | Vero Beach, FL</p>
+    </footer>
+
+</body>
+</html>

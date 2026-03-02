@@ -80,8 +80,10 @@
         @media (min-width: 768px) { .project-card { flex-direction: row; } }
         
         /* Media Container (Where the magic happens) */
+        .project-media:hover img { object-fit: contain; }
+        
         .project-media { 
-            background-color: var(--ink-black); 
+            background-color: transparent; 
             display: flex; 
             align-items: center; 
             justify-content: center; 

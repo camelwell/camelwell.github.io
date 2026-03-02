@@ -46,6 +46,23 @@
             z-index: 1000;
         }
 
+                /* Logo Styling */
+        .nav-logo {
+            height: 50px; /* Adjust this height to fit your nav bar */
+            width: auto;
+            display: block;
+            transition: transform 0.3s ease;
+        }
+        
+        .logo-link:hover .nav-logo {
+            transform: scale(1.05); /* Subtle zoom on hover */
+        }
+        
+        /* Ensure the nav adjusts for the image */
+        nav {
+            padding: 0.5rem 5%; /* Tighten padding for a cleaner look */
+        }
+
         nav h1 {
             color: var(--soft-blush);
             margin: 0;

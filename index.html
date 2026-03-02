@@ -3,62 +3,188 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Your Name - IT Professional</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <title>Camden Elwell - IT Portfolio</title>
     <style>
-        .hero-section { background-color: #f8f9fa; padding: 80px 0; text-align: center; }
-        .skill-box { padding: 20px; border: 1px solid #dee2e6; border-radius: 8px; margin-bottom: 20px; text-align: center; }
+        /* Custom Color Palette */
+        :root {
+            --ink-black: #0d1f2d;
+            --blue-slate: #546a7b;
+            --cool-steel: #9ea3b0;
+            --soft-blush: #fae1df;
+            --desert-sand: #e4c3ad;
+        }
+
+        /* Global Styles */
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #fcfcfc;
+            color: var(--ink-black);
+            line-height: 1.6;
+        }
+
+        a {
+            text-decoration: none;
+            color: var(--blue-slate);
+            transition: color 0.3s ease;
+        }
+
+        a:hover {
+            color: var(--desert-sand);
+        }
+
+        /* Navigation */
+        nav {
+            background-color: var(--ink-black);
+            padding: 1rem 5%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        nav h1 {
+            color: var(--soft-blush);
+            margin: 0;
+            font-size: 1.5rem;
+        }
+
+        nav ul {
+            list-style: none;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            gap: 20px;
+        }
+
+        nav a {
+            color: var(--desert-sand);
+            font-weight: bold;
+        }
+
+        nav a:hover {
+            color: var(--soft-blush);
+        }
+
+        /* Hero Section (Brand YOU) */
+        .hero {
+            background-color: var(--blue-slate);
+            color: var(--soft-blush);
+            padding: 80px 5%;
+            text-align: center;
+        }
+
+        .hero h2 {
+            font-size: 3rem;
+            margin-bottom: 10px;
+            color: var(--soft-blush);
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+            max-width: 800px;
+            margin: 0 auto 30px;
+            color: #ffffff;
+        }
+
+        .btn {
+            background-color: var(--desert-sand);
+            color: var(--ink-black);
+            padding: 12px 25px;
+            border-radius: 5px;
+            font-weight: bold;
+            display: inline-block;
+            border: 2px solid transparent;
+        }
+
+        .btn:hover {
+            background-color: transparent;
+            border-color: var(--desert-sand);
+            color: var(--desert-sand);
+        }
+
+        /* Container for Sections */
+        .container {
+            padding: 60px 5%;
+            max-width: 1200px;
+            margin: auto;
+        }
+
+        .section-title {
+            text-align: center;
+            color: var(--ink-black);
+            font-size: 2.2rem;
+            margin-bottom: 40px;
+            border-bottom: 3px solid var(--cool-steel);
+            display: inline-block;
+            padding-bottom: 10px;
+        }
+
+        /* Skills Grid */
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+        }
+
+        .skill-card {
+            background-color: var(--soft-blush);
+            border-left: 5px solid var(--blue-slate);
+            padding: 20px;
+            border-radius: 5px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+            transition: transform 0.3s;
+        }
+
+        .skill-card:hover {
+            transform: translateY(-5px);
+            background-color: var(--desert-sand);
+        }
+
+        .skill-card h3 {
+            margin-top: 0;
+            color: var(--ink-black);
+        }
+
+        /* Experience Teaser */
+        .experience-card {
+            background-color: white;
+            border: 1px solid var(--cool-steel);
+            padding: 25px;
+            margin-bottom: 20px;
+            border-radius: 8px;
+        }
+
+        .experience-card h4 {
+            color: var(--blue-slate);
+            margin: 0 0 10px 0;
+            font-size: 1.4rem;
+        }
+
+        /* Footer */
+        footer {
+            background-color: var(--ink-black);
+            color: var(--cool-steel);
+            text-align: center;
+            padding: 20px 5%;
+            margin-top: 40px;
+        }
+
     </style>
 </head>
 <body>
 
-    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-        <div class="container">
-            <a class="navbar-brand" href="#">[Your Name] - IT Portfolio</a>
-            <div class="navbar-nav ms-auto">
-                <a class="nav-link" href="resume.html">Interactive Resume</a>
-                <a class="nav-link" href="projects.html">Projects</a>
-            </div>
-        </div>
+    <nav>
+        <h1>Camden Elwell</h1>
+        <ul>
+            <li><a href="#about">About</a></li>
+            <li><a href="#skills">Skills</a></li>
+            <li><a href="#experience">Experience</a></li>
+        </ul>
     </nav>
 
-    <header class="hero-section">
-        <div class="container">
-            <h1 class="display-4 fw-bold">Driving Efficiency Through Code & Infrastructure</h1>
-            <p class="lead mt-3">Systems Analyst & Developer specializing in secure cloud environments, agile methodologies, and scalable web applications.</p>
-            <a href="projects.html" class="btn btn-primary btn-lg mt-3">View My Technical Portfolio</a>
-        </div>
-    </header>
-
-    <section class="container mt-5">
-        <h2 class="text-center mb-4">Core Competencies</h2>
-        <div class="row">
-            <div class="col-md-4">
-                <div class="skill-box shadow-sm">
-                    <h4>Software Development</h4>
-                    <p class="text-muted">Python, Java, React.js, RESTful APIs</p>
-                </div>
-            </div>
-            <div class="col-md-4">
-                <div class="skill-box shadow-sm">
-                    <h4>Cloud & Operations</h4>
-                    <p class="text-muted">AWS, Docker, CI/CD pipelines, Linux Administration</p>
-                </div>
-            </div>
-            <div class="col-md-4">
-                <div class="skill-box shadow-sm">
-                    <h4>Data & Security</h4>
-                    <p class="text-muted">SQL, MongoDB, Network Protocols, Penetration Testing</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <section class="container mt-5 mb-5 text-center">
-        <h2>Proven Results</h2>
-        <p>I don't just write code; I build solutions. From reducing database query times by 40% to deploying highly available web architectures, see how I apply technology to real-world challenges.</p>
-        <a href="resume.html" class="btn btn-outline-dark">Explore My Professional Experience</a>
-    </section>
-
-</body>
-</html>
+    <header class="hero">
+        <h2>Information Technology Professional</h2>
+        <p>A driven BS/MS IT student specializing in technical support, network capabilities, and full-stack software development. Blending innovation and communication to solve complex technical challenges.</p>
+        <a href="#experience" class="btn">Explore My Work</a>
+    </

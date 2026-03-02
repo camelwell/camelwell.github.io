@@ -75,6 +75,31 @@
             border: 2px solid var(--desert-sand);
         }
 
+                /* Qualities Badges */
+        .qualities-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 12px;
+            justify-content: center;
+            margin-top: 30px;
+        }
+        .quality-badge {
+            background-color: transparent;
+            color: var(--blue-slate);
+            border: 2px solid var(--blue-slate);
+            padding: 6px 15px;
+            border-radius: 20px; /* Makes them look like pill tags */
+            font-size: 0.9rem;
+            font-weight: bold;
+            letter-spacing: 0.5px;
+            transition: all 0.3s ease;
+        }
+        .quality-badge:hover {
+            background-color: var(--blue-slate);
+            color: var(--soft-blush);
+            transform: translateY(-2px);
+        }
+
         .contact-content.show { display: block; }
         .contact-content p { margin: 8px 0; color: var(--ink-black); font-size: 0.95rem; display: flex; align-items: center; }
         .contact-content a { font-weight: bold; }
@@ -183,8 +208,17 @@
     </header>
 
     <section id="about" class="container">
-        <h2 class="section-title">About Me</h2>
-        <p>I am a driven, analytical, adaptable, creative, and passionate Information Technology student focused on creating efficient user-centered solutions. With hands-on experience in systems support, software development, and technical maintenance and a background in programming, IT infrastructure, and digital media, it allows me to approach challenges from both a logical and creative perspective.</p>
+    <h2 class="section-title">About Me</h2>
+    <p>I am a driven, analytical, adaptable, creative, and passionate Information Technology student focused on creating efficient user-centered solutions. With hands-on experience in systems support, software development, and technical maintenance and a background in programming, IT infrastructure, and digital media, it allows me to approach challenges from both a logical and creative perspective.</p>
+    
+    <div class="qualities-container">
+        <span class="quality-badge">Analytical Thinking</span>
+        <span class="quality-badge">Cross-Functional Collaboration</span>
+        <span class="quality-badge">Root-Cause Analysis</span>
+        <span class="quality-badge">User-Centric Design</span>
+        <span class="quality-badge">Agile Adaptability</span>
+        <span class="quality-badge">Technical Communication</span>
+    </div>
     </section>
 
     <section id="skills" class="container">

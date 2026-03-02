@@ -8,7 +8,6 @@
     <link rel="icon" type="image/png" href="favicon.png">
     
     <style>
-        /* Custom Color Palette */
         :root {
             --ink-black: #0d1f2d;
             --blue-slate: #546a7b;
@@ -17,10 +16,7 @@
             --desert-sand: #e4c3ad;
         }
 
-        /* Global Styles & Smooth Scrolling */
-        html {
-            scroll-behavior: smooth;
-        }
+        html { scroll-behavior: smooth; }
 
         body {
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
@@ -31,11 +27,7 @@
             line-height: 1.6;
         }
 
-        a {
-            text-decoration: none;
-            color: var(--blue-slate);
-            transition: color 0.3s ease;
-        }
+        a { text-decoration: none; color: var(--blue-slate); transition: color 0.3s ease; }
 
         /* Navigation */
         nav {
@@ -49,58 +41,16 @@
             z-index: 1000;
         }
 
-        /* Nav Left Grouping (Logo + Brand + Projects Label) */
-        .nav-left {
-            display: flex;
-            align-items: center;
-            gap: 30px;
-        }
+        .nav-left { display: flex; align-items: center; gap: 30px; }
 
-        /* Brand Layout (Logo + Title) */
-        .brand-link {
-            display: flex;
-            flex-direction: row;
-            align-items: center;
-            gap: 15px; 
-            text-decoration: none;
-        }
+        .brand-link { display: flex; flex-direction: row; align-items: center; gap: 15px; text-decoration: none; }
+        .nav-logo { height: 50px; width: auto; display: block; transition: transform 0.3s ease; }
+        .brand-link:hover .nav-logo { transform: scale(1.05); }
 
-        .nav-logo {
-            height: 50px; 
-            width: auto;
-            display: block;
-            transition: transform 0.3s ease;
-        }
-        
-        .brand-link:hover .nav-logo {
-            transform: scale(1.05);
-        }
+        .brand-text { display: flex; flex-direction: column; justify-content: center; text-align: left; }
+        .brand-name { color: var(--soft-blush); font-size: 1.5rem; font-weight: bold; line-height: 1.2; white-space: nowrap; }
+        .brand-title { color: var(--cool-steel); font-size: 0.9rem; text-transform: uppercase; letter-spacing: 1px; line-height: 1.2; white-space: nowrap; }
 
-        .brand-text {
-            display: flex;
-            flex-direction: column; 
-            justify-content: center;
-            text-align: left; 
-        }
-
-        .brand-name {
-            color: var(--soft-blush);
-            font-size: 1.5rem;
-            font-weight: bold;
-            line-height: 1.2;
-            white-space: nowrap; 
-        }
-
-        .brand-title {
-            color: var(--cool-steel);
-            font-size: 0.9rem;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            line-height: 1.2;
-            white-space: nowrap;
-        }
-
-        /* Projects Nav Label */
         .nav-projects-label {
             color: var(--cool-steel);
             font-weight: bold;
@@ -111,24 +61,14 @@
             padding-left: 30px;
             transition: color 0.3s ease;
         }
+        .nav-projects-label:hover { color: var(--soft-blush); }
 
-        .nav-projects-label:hover {
-            color: var(--soft-blush);
-        }
-
-        /* Contact Dropdown */
-        .contact-dropdown {
-            position: relative;
-            display: inline-block;
-        }
-
-        .contact-dropdown .btn {
-            margin: 0;
-            padding: 8px 20px;
-        }
-
+        /* Contact Dropdown - Click to Open */
+        .contact-dropdown { position: relative; display: inline-block; }
+        .contact-dropdown .btn { margin: 0; padding: 8px 20px; }
+        
         .contact-content {
-            display: none;
+            display: none; /* Hidden by default */
             position: absolute;
             right: 0;
             top: 120%;
@@ -141,45 +81,18 @@
             border: 2px solid var(--desert-sand);
         }
 
-        .contact-dropdown:hover .contact-content {
-            display: block;
-        }
+        /* Class added via JavaScript to show the dropdown */
+        .contact-content.show { display: block; }
 
-        .contact-content p {
-            margin: 8px 0;
-            color: var(--ink-black);
-            font-size: 0.95rem;
-        }
+        .contact-content p { margin: 8px 0; color: var(--ink-black); font-size: 0.95rem; }
+        .contact-content a { font-weight: bold; }
+        .contact-content a:hover { color: var(--ink-black); text-decoration: underline; }
 
         /* Hero Section */
-        .hero {
-            background-color: var(--blue-slate);
-            color: var(--soft-blush);
-            padding: 100px 5%;
-            text-align: center;
-        }
-
-        .hero h2 {
-            font-size: 3rem;
-            margin-bottom: 10px;
-            color: var(--soft-blush);
-        }
-
-        .hero p {
-            font-size: 1.2rem;
-            max-width: 800px;
-            margin: 0 auto 30px;
-            color: #ffffff;
-        }
-
-        .hero-links {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            gap: 15px;
-            margin-top: 30px;
-            flex-wrap: wrap;
-        }
+        .hero { background-color: var(--blue-slate); color: var(--soft-blush); padding: 100px 5%; text-align: center; }
+        .hero h2 { font-size: 3rem; margin-bottom: 10px; color: var(--soft-blush); }
+        .hero p { font-size: 1.2rem; max-width: 800px; margin: 0 auto 30px; color: #ffffff; }
+        .hero-links { display: flex; justify-content: center; align-items: center; gap: 15px; margin-top: 30px; flex-wrap: wrap; }
 
         .btn {
             background-color: var(--desert-sand);
@@ -193,130 +106,39 @@
             transition: all 0.3s ease;
             text-decoration: none;
         }
-
-        .btn:hover {
-            background-color: var(--soft-blush);
-            border-color: var(--desert-sand);
-            color: var(--ink-black);
-        }
-
-        /* Larger Projects Button */
-        .btn-projects {
-            background-color: var(--soft-blush);
-            padding: 16px 35px;
-            font-size: 1.15rem;
-            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
-        }
-
-        .btn-projects:hover {
-            background-color: var(--desert-sand);
-            border-color: var(--soft-blush);
-        }
+        .btn:hover { background-color: var(--soft-blush); border-color: var(--desert-sand); color: var(--ink-black); }
+        .btn-projects { background-color: var(--soft-blush); padding: 16px 35px; font-size: 1.15rem; box-shadow: 0 4px 6px rgba(0,0,0,0.1); }
+        .btn-projects:hover { background-color: var(--desert-sand); border-color: var(--soft-blush); }
 
         /* Container for Sections */
-        .container {
-            padding: 80px 5%;
-            max-width: 1000px;
-            margin: auto;
-        }
-
-        .section-title {
-            text-align: center;
-            color: var(--ink-black);
-            font-size: 2.2rem;
-            margin-bottom: 40px;
-            border-bottom: 3px solid var(--cool-steel);
-            display: inline-block;
-            padding-bottom: 10px;
-        }
+        .container { padding: 80px 5%; max-width: 1000px; margin: auto; }
+        .section-title { text-align: center; color: var(--ink-black); font-size: 2.2rem; margin-bottom: 40px; border-bottom: 3px solid var(--cool-steel); display: inline-block; padding-bottom: 10px; }
 
         /* About Section */
-        #about p {
-            font-size: 1.1rem;
-            text-align: justify;
-        }
+        #about p { font-size: 1.1rem; text-align: justify; }
 
         /* Skills Grid & Bullet Points */
-        .skills-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 20px;
-        }
-
-        .skill-card {
-            background-color: var(--soft-blush);
-            border-left: 5px solid var(--blue-slate);
-            padding: 20px;
-            border-radius: 5px;
-            box-shadow: 0 4px 6px rgba(0,0,0,0.05);
-            transition: transform 0.3s;
-            text-align: left;
-        }
-
-        .skill-card:hover {
-            transform: translateY(-5px);
-            background-color: var(--desert-sand);
-        }
-
-        .skill-card h3 {
-            margin-top: 0;
-            margin-bottom: 15px;
-            color: var(--ink-black);
-            border-bottom: 1px solid var(--blue-slate);
-            padding-bottom: 5px;
-        }
-
-        .skill-list {
-            list-style-type: square; 
-            padding-left: 20px;
-            margin: 0;
-        }
-
-        .skill-list li {
-            margin-bottom: 8px; 
-            color: var(--ink-black);
-            font-weight: 500;
-        }
+        .skills-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 20px; }
+        .skill-card { background-color: var(--soft-blush); border-left: 5px solid var(--blue-slate); padding: 20px; border-radius: 5px; box-shadow: 0 4px 6px rgba(0,0,0,0.05); transition: transform 0.3s; text-align: left; }
+        .skill-card:hover { transform: translateY(-5px); background-color: var(--desert-sand); }
+        .skill-card h3 { margin-top: 0; margin-bottom: 15px; color: var(--ink-black); border-bottom: 1px solid var(--blue-slate); padding-bottom: 5px; }
+        .skill-list { list-style-type: square; padding-left: 20px; margin: 0; }
+        .skill-list li { margin-bottom: 8px; color: var(--ink-black); font-weight: 500; }
 
         /* Experience Cards */
-        .experience-card {
-            background-color: white;
-            border: 1px solid var(--cool-steel);
-            padding: 25px;
-            margin-bottom: 20px;
-            border-radius: 8px;
-            box-shadow: 0 2px 4px rgba(0,0,0,0.05);
-        }
-
-        .experience-card h4 {
-            color: var(--blue-slate);
-            margin: 0 0 5px 0;
-            font-size: 1.4rem;
-        }
-        
-        .experience-card .date-location {
-            color: var(--cool-steel);
-            font-style: italic;
-            margin-bottom: 15px;
-            font-size: 0.95rem;
-        }
+        .experience-card { background-color: white; border: 1px solid var(--cool-steel); padding: 25px; margin-bottom: 20px; border-radius: 8px; box-shadow: 0 2px 4px rgba(0,0,0,0.05); }
+        .experience-card h4 { color: var(--blue-slate); margin: 0 0 5px 0; font-size: 1.4rem; }
+        .experience-card .date-location { color: var(--cool-steel); font-style: italic; margin-bottom: 15px; font-size: 0.95rem; }
 
         /* Footer */
-        footer {
-            background-color: var(--ink-black);
-            color: var(--cool-steel);
-            text-align: center;
-            padding: 30px 5%;
-            margin-top: 40px;
-        }
-
+        footer { background-color: var(--ink-black); color: var(--cool-steel); text-align: center; padding: 30px 5%; margin-top: 40px; }
     </style>
 </head>
 <body>
 
     <nav>
         <div class="nav-left">
-            <a href="index.html" class="brand-link">
+            <a href="#" class="brand-link">
                 <img src="camelwell.png" alt="Camden Elwell Logo" class="nav-logo">
                 <div class="brand-text">
                     <span class="brand-name">Camden Elwell</span>
@@ -327,9 +149,9 @@
         </div>
 
         <div class="contact-dropdown">
-            <a href="mailto:camdenelwell@gmail.com" class="btn">Contact</a>
-            <div class="contact-content">
-                <p><strong>Email:</strong> camdenelwell@gmail.com</p>
+            <a href="#" class="btn" id="contactBtn">Contact</a>
+            <div class="contact-content" id="contactDropdown">
+                <p><strong>Email:</strong> <a href="mailto:camdenelwell@gmail.com">camdenelwell@gmail.com</a></p>
                 <p><strong>Phone:</strong> (772) 643-5646</p>
                 <p><strong>Location:</strong> Vero Beach, FL</p>
             </div>
@@ -426,5 +248,27 @@
         <p>&copy; 2026 Camden Elwell | Vero Beach, FL</p>
     </footer>
 
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const btn = document.getElementById('contactBtn');
+            const dropdown = document.getElementById('contactDropdown');
+
+            // Toggle dropdown when clicking the button
+            btn.addEventListener('click', function(event) {
+                event.preventDefault(); // Prevents the link from scrolling to the top
+                dropdown.classList.toggle('show');
+                event.stopPropagation(); // Stops the click from immediately hiding it again
+            });
+
+            // Hide dropdown when clicking anywhere else on the page
+            window.addEventListener('click', function(event) {
+                if (!event.target.matches('#contactBtn') && !dropdown.contains(event.target)) {
+                    if (dropdown.classList.contains('show')) {
+                        dropdown.classList.remove('show');
+                    }
+                }
+            });
+        });
+    </script>
 </body>
 </html>

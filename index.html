@@ -48,15 +48,43 @@
         }
 
                 /* Logo Styling */
+        .brand-link {
+            display: flex;
+            align-items: center;
+            gap: 15px; /* Creates perfect spacing between the logo and text */
+            text-decoration: none;
+        }
+
         .nav-logo {
-            height: 50px; /* Adjust this height to fit your nav bar */
+            height: 50px; /* Keeps the logo locked at a reasonable size */
             width: auto;
             display: block;
-            transition: transform 0.3s ease;
+        }
+
+        .brand-text {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .brand-name {
+            color: var(--soft-blush);
+            font-size: 1.5rem;
+            font-weight: bold;
+            line-height: 1.2;
+        }
+
+        .brand-title {
+            color: var(--cool-steel);
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            line-height: 1.2;
         }
         
-        .logo-link:hover .nav-logo {
-            transform: scale(1.05); /* Subtle zoom on hover */
+        /* Ensure the nav adjusts for the flex layout */
+        nav {
+            padding: 0.5rem 5%; 
         }
         
         /* Ensure the nav adjusts for the image */
@@ -247,7 +275,7 @@
         </a>
 
         <div class="contact-dropdown">
-            <span class="btn">Contact Info</span>
+            <span class="btn">Contact</span>
             <div class="contact-content">
                 <p><strong>Email:</strong> camdenelwell@gmail.com</p>
                 <p><strong>Phone:</strong> (772) 643-5646</p>

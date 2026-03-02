@@ -31,7 +31,7 @@
         .nav-projects-label { color: var(--cool-steel); font-weight: bold; text-transform: uppercase; letter-spacing: 1px; font-size: 0.9rem; border-left: 2px solid var(--blue-slate); padding-left: 30px; transition: color 0.3s ease; }
         .nav-projects-label:hover { color: var(--soft-blush); }
         
-        /* Contact Dropdown - Click to Open */
+        /* Contact Dropdown */
         .contact-dropdown { position: relative; display: inline-block; }
         .contact-dropdown .btn { background-color: var(--desert-sand); color: var(--ink-black); padding: 8px 20px; border-radius: 5px; font-weight: bold; display: inline-block; border: 2px solid transparent; cursor: pointer; transition: all 0.3s ease; margin: 0; }
         .contact-dropdown .btn:hover { background-color: var(--soft-blush); border-color: var(--desert-sand); }
@@ -55,7 +55,6 @@
         .contact-content a { font-weight: bold; }
         .contact-content a:hover { color: var(--ink-black); text-decoration: underline; }
 
-        /* Copy Button & Fade Text */
         .copy-container { display: inline-flex; align-items: center; position: relative; }
         .copy-btn { background: none; border: none; cursor: pointer; font-size: 1.1rem; margin-left: 8px; padding: 0; transition: transform 0.2s ease; }
         .copy-btn:hover { transform: scale(1.2); }
@@ -68,15 +67,67 @@
         .container { padding: 60px 5%; max-width: 1000px; margin: auto; }
         
         /* Project Cards */
-        .project-card { background-color: white; border: 1px solid var(--cool-steel); border-radius: 8px; overflow: hidden; margin-bottom: 40px; box-shadow: 0 4px 6px rgba(0,0,0,0.05); display: flex; flex-direction: column; }
+        .project-card { 
+            background-color: white; 
+            border: 1px solid var(--cool-steel); 
+            border-radius: 8px; 
+            margin-bottom: 40px; 
+            box-shadow: 0 4px 6px rgba(0,0,0,0.05); 
+            display: flex; 
+            flex-direction: column; 
+            position: relative; /* Allows media to pop out over it */
+        }
         @media (min-width: 768px) { .project-card { flex-direction: row; } }
         
-        .project-media { background-color: var(--ink-black); display: flex; align-items: center; justify-content: center; flex: 1; border-bottom: 1px solid var(--cool-steel); overflow: hidden; position: relative;}
-        @media (min-width: 768px) { .project-media { border-bottom: none; border-right: 1px solid var(--cool-steel); max-width: 400px; min-height: 250px; } }
-        
-        .project-media img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.3s ease; }
-        .project-media img:hover { transform: scale(1.02); }
-        .project-media iframe { width: 100%; height: 100%; border: none; min-height: 250px; }
+        /* Media Container (Where the magic happens) */
+        .project-media { 
+            background-color: var(--ink-black); 
+            display: flex; 
+            align-items: center; 
+            justify-content: center; 
+            flex: 1; 
+            position: relative;
+            z-index: 1;
+            border-radius: 8px 8px 0 0;
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275); /* Smooth, slightly bouncy animation */
+        }
+        @media (min-width: 768px) { 
+            .project-media { 
+                max-width: 400px; 
+                min-height: 250px; 
+                border-radius: 8px 0 0 8px;
+            } 
+        }
+
+        /* --- THE HOVER "FOCUS" EFFECT --- */
+        .project-media:hover {
+            transform: scale(1.35); /* Grows by 35% */
+            z-index: 100; /* Brings it to the absolute front */
+            box-shadow: 0 20px 40px rgba(0,0,0,0.6); /* Adds a deep shadow to separate it from the background */
+            border-radius: 8px; /* Rounds all corners when popped out */
+        }
+
+        /* Image and Video settings */
+        .project-media img, .project-media video { 
+            width: 100%; 
+            height: 100%; 
+            object-fit: cover; /* Keeps it looking nice when NOT hovered */
+            border-radius: inherit;
+        }
+
+        /* Shows the FULL image when hovered */
+        .project-media:hover img, .project-media:hover video {
+            object-fit: contain; 
+        }
+
+        /* YouTube iFrame Settings */
+        .project-media iframe { 
+            width: 100%; 
+            height: 100%; 
+            border: none; 
+            min-height: 250px; 
+            border-radius: inherit;
+        }
 
         .project-details { padding: 30px; flex: 2; }
         .project-details h3 { color: var(--ink-black); margin-top: 0; font-size: 1.5rem; }
@@ -126,7 +177,8 @@
         <div class="project-card">
             <div class="project-media">
                 <img src="rss-feed.gif" alt="Android RSS Feed App Demonstration">
-            </div>
+                
+                </div>
             <div class="project-details">
                 <h3>Android Mobile Development & RSS Reader</h3>
                 <div class="tech-stack">
@@ -140,7 +192,7 @@
 
         <div class="project-card">
             <div class="project-media">
-                <iframe src="https://www.youtube.com/embed/YOUR_VIDEO_ID_HERE" title="Unity VR Project Demo" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                <iframe src="https://youtu.be/8rA7FQgvrXU" title="Unity VR Project Demo" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
             </div>
             <div class="project-details">
                 <h3>Immersive VR Environment</h3>

@@ -49,6 +49,13 @@
             z-index: 1000;
         }
 
+        /* Nav Left Grouping (Logo + Brand + Projects Label) */
+        .nav-left {
+            display: flex;
+            align-items: center;
+            gap: 30px;
+        }
+
         /* Brand Layout (Logo + Title) */
         .brand-link {
             display: flex;
@@ -91,6 +98,22 @@
             letter-spacing: 1px;
             line-height: 1.2;
             white-space: nowrap;
+        }
+
+        /* Projects Nav Label */
+        .nav-projects-label {
+            color: var(--cool-steel);
+            font-weight: bold;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            font-size: 0.9rem;
+            border-left: 2px solid var(--blue-slate);
+            padding-left: 30px;
+            transition: color 0.3s ease;
+        }
+
+        .nav-projects-label:hover {
+            color: var(--soft-blush);
         }
 
         /* Contact Dropdown */
@@ -152,6 +175,7 @@
         .hero-links {
             display: flex;
             justify-content: center;
+            align-items: center;
             gap: 15px;
             margin-top: 30px;
             flex-wrap: wrap;
@@ -167,12 +191,26 @@
             border: 2px solid transparent;
             cursor: pointer;
             transition: all 0.3s ease;
+            text-decoration: none;
         }
 
         .btn:hover {
             background-color: var(--soft-blush);
             border-color: var(--desert-sand);
             color: var(--ink-black);
+        }
+
+        /* Larger Projects Button */
+        .btn-projects {
+            background-color: var(--soft-blush);
+            padding: 16px 35px;
+            font-size: 1.15rem;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+
+        .btn-projects:hover {
+            background-color: var(--desert-sand);
+            border-color: var(--soft-blush);
         }
 
         /* Container for Sections */
@@ -277,16 +315,19 @@
 <body>
 
     <nav>
-        <a href="#" class="brand-link">
-            <img src="camelwell.png" alt="Camden Elwell Logo" class="nav-logo">
-            <div class="brand-text">
-                <span class="brand-name">Camden Elwell</span>
-                <span class="brand-title">IT Portfolio</span>
-            </div>
-        </a>
+        <div class="nav-left">
+            <a href="index.html" class="brand-link">
+                <img src="camelwell.png" alt="Camden Elwell Logo" class="nav-logo">
+                <div class="brand-text">
+                    <span class="brand-name">Camden Elwell</span>
+                    <span class="brand-title">IT Portfolio</span>
+                </div>
+            </a>
+            <a href="projects.html" class="nav-projects-label">Projects</a>
+        </div>
 
         <div class="contact-dropdown">
-            <span class="btn">Contact Info</span>
+            <a href="mailto:camdenelwell@gmail.com" class="btn">Contact</a>
             <div class="contact-content">
                 <p><strong>Email:</strong> camdenelwell@gmail.com</p>
                 <p><strong>Phone:</strong> (772) 643-5646</p>
@@ -303,6 +344,7 @@
             <a href="#about" class="btn">About Me</a>
             <a href="#skills" class="btn">Skills</a>
             <a href="#experience" class="btn">Experience</a>
+            <a href="projects.html" class="btn btn-projects">My Projects</a>
         </div>
     </header>
 

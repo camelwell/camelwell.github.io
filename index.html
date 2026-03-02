@@ -4,7 +4,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Camden Elwell - IT Portfolio</title>
-    <link rel="icon" type="image/png" href="favicon.png">
+    
+    <link rel="icon" type="image/png" href="camelwell.png">
+    
     <style>
         /* Custom Color Palette */
         :root {
@@ -38,7 +40,7 @@
         /* Navigation */
         nav {
             background-color: var(--ink-black);
-            padding: 1rem 5%;
+            padding: 0.5rem 5%;
             display: flex;
             justify-content: space-between;
             align-items: center;
@@ -47,24 +49,31 @@
             z-index: 1000;
         }
 
-                /* Logo Styling */
+        /* Brand Layout (Logo + Title) */
         .brand-link {
             display: flex;
+            flex-direction: row;
             align-items: center;
-            gap: 15px; /* Creates perfect spacing between the logo and text */
+            gap: 15px; 
             text-decoration: none;
         }
 
         .nav-logo {
-            height: 50px; /* Keeps the logo locked at a reasonable size */
+            height: 50px; 
             width: auto;
             display: block;
+            transition: transform 0.3s ease;
+        }
+        
+        .brand-link:hover .nav-logo {
+            transform: scale(1.05);
         }
 
         .brand-text {
             display: flex;
-            flex-direction: column;
+            flex-direction: column; 
             justify-content: center;
+            text-align: left; 
         }
 
         .brand-name {
@@ -72,6 +81,7 @@
             font-size: 1.5rem;
             font-weight: bold;
             line-height: 1.2;
+            white-space: nowrap; 
         }
 
         .brand-title {
@@ -80,22 +90,7 @@
             text-transform: uppercase;
             letter-spacing: 1px;
             line-height: 1.2;
-        }
-        
-        /* Ensure the nav adjusts for the flex layout */
-        nav {
-            padding: 0.5rem 5%; 
-        }
-        
-        /* Ensure the nav adjusts for the image */
-        nav {
-            padding: 0.5rem 5%; /* Tighten padding for a cleaner look */
-        }
-
-        nav h1 {
-            color: var(--soft-blush);
-            margin: 0;
-            font-size: 1.5rem;
+            white-space: nowrap;
         }
 
         /* Contact Dropdown */
@@ -203,7 +198,7 @@
             text-align: justify;
         }
 
-        /* Skills Grid */
+        /* Skills Grid & Bullet Points */
         .skills-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
@@ -217,6 +212,7 @@
             border-radius: 5px;
             box-shadow: 0 4px 6px rgba(0,0,0,0.05);
             transition: transform 0.3s;
+            text-align: left;
         }
 
         .skill-card:hover {
@@ -226,7 +222,22 @@
 
         .skill-card h3 {
             margin-top: 0;
+            margin-bottom: 15px;
             color: var(--ink-black);
+            border-bottom: 1px solid var(--blue-slate);
+            padding-bottom: 5px;
+        }
+
+        .skill-list {
+            list-style-type: square; 
+            padding-left: 20px;
+            margin: 0;
+        }
+
+        .skill-list li {
+            margin-bottom: 8px; 
+            color: var(--ink-black);
+            font-weight: 500;
         }
 
         /* Experience Cards */
@@ -266,7 +277,7 @@
 <body>
 
     <nav>
-        <a href="index.html" class="logo-link">
+        <a href="#" class="brand-link">
             <img src="camelwell.png" alt="Camden Elwell Logo" class="nav-logo">
             <div class="brand-text">
                 <span class="brand-name">Camden Elwell</span>
@@ -275,11 +286,11 @@
         </a>
 
         <div class="contact-dropdown">
-            <span class="btn">Contact</span>
+            <span class="btn">Contact Info</span>
             <div class="contact-content">
                 <p><strong>Email:</strong> camdenelwell@gmail.com</p>
                 <p><strong>Phone:</strong> (772) 643-5646</p>
-                <p><strong>Location:</strong>Tallahassee, FL</p>
+                <p><strong>Location:</strong> Vero Beach, FL</p>
             </div>
         </div>
     </nav>
@@ -304,21 +315,41 @@ maintenance and a background in programming, IT infrastructure, and digital medi
 it allows me to approach challenges from both a logical and creative perspective.</p>
     </section>
 
-    <section id="skills" class="container text-center">
+    <section id="skills" class="container">
         <center><h2 class="section-title">Technical Competencies</h2></center>
         <div class="skills-grid">
+            
             <div class="skill-card">
                 <h3>Programming</h3>
-                <p>Python, Java, JavaScript, R</p>
+                <ul class="skill-list">
+                    <li>Python</li>
+                    <li>Java</li>
+                    <li>JavaScript</li>
+                    <li>R</li>
+                </ul>
             </div>
+
             <div class="skill-card">
                 <h3>Creative & Media</h3>
-                <p>Adobe Photoshop & Premiere (Certified), Illustrator, InDesign, Unity, Blender</p>
+                <ul class="skill-list">
+                    <li>Adobe Photoshop (Certified)</li>
+                    <li>Adobe Premiere Pro (Certified)</li>
+                    <li>Adobe Illustrator</li>
+                    <li>Adobe InDesign</li>
+                    <li>Unity</li>
+                    <li>Blender</li>
+                </ul>
             </div>
+
             <div class="skill-card">
                 <h3>Tools & Administration</h3>
-                <p>Git, OBS Studio, Microsoft Office Products</p>
+                <ul class="skill-list">
+                    <li>Git Version Control</li>
+                    <li>OBS Studio</li>
+                    <li>Microsoft Office Suite</li>
+                </ul>
             </div>
+
         </div>
     </section>
 

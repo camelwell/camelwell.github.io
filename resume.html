@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Camden Elwell - Resume</title>
+    
+    <link rel="icon" type="image/png" href="favicon.png">
+    
+    <style>
+        :root {
+            --ink-black: #0d1f2d;
+            --blue-slate: #546a7b;
+            --cool-steel: #9ea3b0;
+            --soft-blush: #fae1df;
+            --desert-sand: #e4c3ad;
+        }
+
+        body { font-family: 'Segoe UI', sans-serif; margin: 0; padding: 0; background-color: #fcfcfc; color: var(--ink-black); line-height: 1.6; display: flex; flex-direction: column; min-height: 100vh;}
+        a { text-decoration: none; color: var(--blue-slate); transition: color 0.3s ease; }
+        
+        /* Navigation */
+        nav { background-color: var(--ink-black); padding: 0.5rem 5%; display: flex; justify-content: space-between; align-items: center; position: sticky; top: 0; z-index: 1000; }
+        .nav-left { display: flex; align-items: center; gap: 20px; flex-wrap: wrap; }
+        .brand-link { display: flex; flex-direction: row; align-items: center; gap: 15px; text-decoration: none; margin-right: 10px; }
+        .nav-logo { height: 50px; width: auto; display: block; transition: transform 0.3s ease; }
+        .brand-link:hover .nav-logo { transform: scale(1.05); }
+        .brand-text { display: flex; flex-direction: column; justify-content: center; text-align: left; }
+        .brand-name { color: var(--soft-blush); font-size: 1.5rem; font-weight: bold; line-height: 1.2; white-space: nowrap; }
+        .brand-title { color: var(--cool-steel); font-size: 0.9rem; text-transform: uppercase; letter-spacing: 1px; line-height: 1.2; white-space: nowrap; }
+        
+        .nav-links { display: flex; gap: 15px; border-left: 2px solid var(--blue-slate); padding-left: 20px; }
+        .nav-label { color: var(--cool-steel); font-weight: bold; text-transform: uppercase; letter-spacing: 1px; font-size: 0.9rem; transition: color 0.3s ease; }
+        .nav-label:hover { color: var(--soft-blush); }
+        .active-link { color: var(--soft-blush); }
+        
+        /* Contact Dropdown */
+        .contact-dropdown { position: relative; display: inline-block; }
+        .contact-dropdown .btn { background-color: var(--desert-sand); color: var(--ink-black); padding: 8px 20px; border-radius: 5px; font-weight: bold; display: inline-block; border: 2px solid transparent; cursor: pointer; transition: all 0.3s ease; margin: 0; }
+        .contact-dropdown .btn:hover { background-color: var(--soft-blush); border-color: var(--desert-sand); }
+        
+        .contact-content {
+            display: none;
+            position: absolute;
+            right: 0;
+            top: 120%;
+            background-color: var(--soft-blush);
+            min-width: 260px;
+            box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+            z-index: 1;
+            border-radius: 8px;
+            padding: 20px;
+            border: 2px solid var(--desert-sand);
+        }
+
+        .contact-content.show { display: block; }
+        .contact-content p { margin: 8px 0; color: var(--ink-black); font-size: 0.95rem; display: flex; align-items: center;}
+        .contact-content a { font-weight: bold; }
+        .contact-content a:hover { color: var(--ink-black); text-decoration: underline; }
+
+        .copy-container { display: inline-flex; align-items: center; position: relative; }
+        .copy-btn { background: none; border: none; cursor: pointer; font-size: 1.1rem; margin-left: 8px; padding: 0; transition: transform 0.2s ease; }
+        .copy-btn:hover { transform: scale(1.2); }
+        .copy-msg { font-size: 0.85rem; color: #2e7d32; font-weight: bold; margin-left: 8px; opacity: 0; transition: opacity 0.3s ease; pointer-events: none; }
+        .copy-msg.show { opacity: 1; }
+
+        /* Page Headers and Container */
+        .page-header { background-color: var(--blue-slate); color: var(--soft-blush); padding: 40px 5%; text-align: center; }
+        .page-header h1 { font-size: 2.2rem; margin: 0 0 10px 0; }
+        
+        .resume-container { 
+            flex: 1; 
+            padding: 40px 5%; 
+            max-width: 1000px; 
+            margin: 0 auto; 
+            width: 90%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        /* The PDF Viewer */
+        .pdf-viewer {
+            width: 100%;
+            height: 85vh;
+            min-height: 800px;
+            border: 1px solid var(--cool-steel);
+            border-radius: 8px;
+            box-shadow: 0 8px 16px rgba(0,0,0,0.1);
+            background-color: #fff;
+        }
+
+        .download-prompt {
+            margin-top: 20px;
+            font-size: 1rem;
+            color: var(--cool-steel);
+        }
+        
+        .download-prompt a {
+            color: var(--blue-slate);
+            font-weight: bold;
+            text-decoration: underline;
+        }
+
+        footer { background-color: var(--ink-black); color: var(--cool-steel); text-align: center; padding: 30px 5%; margin-top: auto; }
+    </style>
+</head>
+<body>
+
+    <nav>
+        <div class="nav-left">
+            <a href="index.html" class="brand-link">
+                <img src="camelwell.png" alt="Camden Elwell Logo" class="nav-logo">
+                <div class="brand-text">
+                    <span class="brand-name">Camden Elwell</span>
+                    <span class="brand-title">IT Portfolio</span>
+                </div>
+            </a>
+            <div class="nav-links">
+                <a href="index.html" class="nav-label">Home</a> 
+                <a href="projects.html" class="nav-label">Projects</a>
+            </div>
+        </div>
+
+        <div class="contact-dropdown">
+            <a href="#" class="btn" id="contactBtn">Contact</a>
+            <div class="contact-content" id="contactDropdown">
+                <p>
+                    <strong>Email:</strong> &nbsp;<a href="mailto:camdenelwell@gmail.com">camdenelwell@gmail.com</a>
+                    <span class="copy-container">
+                        <button class="copy-btn" onclick="copyEmail(event)" title="Copy Email">📋</button>
+                        <span class="copy-msg" id="copyMsg">Copied!</span>
+                    </span>
+                </p>
+                <p><strong>Phone:</strong> &nbsp;(772) 643-5646</p>
+                <p><strong>Location:</strong> &nbsp;Tallahassee, FL</p>
+            </div>
+        </div>
+    </nav>
+
+    <header class="page-header">
+        <h1>Professional Resume</h1>
+    </header>
+
+    <section class="resume-container">
+        <iframe src="resume.pdf" class="pdf-viewer" title="Camden Elwell Resume"></iframe>
+        
+        <p class="download-prompt">Having trouble viewing the embedded file? <a href="resume.pdf" target="_blank" download>Click here to download the PDF directly.</a></p>
+    </section>
+
+    <footer>
+        <p>&copy; 2026 Camden Elwell | Tallahassee, FL</p>
+    </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const btn = document.getElementById('contactBtn');
+            const dropdown = document.getElementById('contactDropdown');
+
+            btn.addEventListener('click', function(event) {
+                event.preventDefault(); 
+                dropdown.classList.toggle('show');
+                event.stopPropagation(); 
+            });
+
+            window.addEventListener('click', function(event) {
+                if (!event.target.matches('#contactBtn') && !dropdown.contains(event.target)) {
+                    if (dropdown.classList.contains('show')) {
+                        dropdown.classList.remove('show');
+                    }
+                }
+            });
+        });
+
+        function copyEmail(event) {
+            event.preventDefault();
+            navigator.clipboard.writeText('camdenelwell@gmail.com');
+            const btn = event.currentTarget;
+            const originalText = btn.innerText;
+            const msg = document.getElementById('copyMsg');
+            
+            btn.innerText = '✅';
+            msg.classList.add('show');
+            
+            setTimeout(() => { 
+                btn.innerText = originalText; 
+                msg.classList.remove('show');
+            }, 2000); 
+            
+            event.stopPropagation(); 
+        }
+    </script>
+</body>
+</html>

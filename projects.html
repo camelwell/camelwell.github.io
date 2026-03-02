@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Camden Elwell - Projects</title>
+    
+    <link rel="icon" type="image/png" href="favicon.png">
+    
+    <style>
+        /* Shared Styles from index.html */
+        :root {
+            --ink-black: #0d1f2d;
+            --blue-slate: #546a7b;
+            --cool-steel: #9ea3b0;
+            --soft-blush: #fae1df;
+            --desert-sand: #e4c3ad;
+        }
+        body { font-family: 'Segoe UI', sans-serif; margin: 0; padding: 0; background-color: #fcfcfc; color: var(--ink-black); line-height: 1.6; }
+        a { text-decoration: none; color: var(--blue-slate); transition: color 0.3s ease; }
+        
+        /* Navigation (Same as Home) */
+        nav { background-color: var(--ink-black); padding: 0.5rem 5%; display: flex; justify-content: space-between; align-items: center; position: sticky; top: 0; z-index: 1000; }
+        .nav-left { display: flex; align-items: center; gap: 30px; }
+        .brand-link { display: flex; flex-direction: row; align-items: center; gap: 15px; text-decoration: none; }
+        .nav-logo { height: 50px; width: auto; display: block; transition: transform 0.3s ease; }
+        .brand-link:hover .nav-logo { transform: scale(1.05); }
+        .brand-text { display: flex; flex-direction: column; justify-content: center; text-align: left; }
+        .brand-name { color: var(--soft-blush); font-size: 1.5rem; font-weight: bold; line-height: 1.2; white-space: nowrap; }
+        .brand-title { color: var(--cool-steel); font-size: 0.9rem; text-transform: uppercase; letter-spacing: 1px; line-height: 1.2; white-space: nowrap; }
+        .nav-projects-label { color: var(--cool-steel); font-weight: bold; text-transform: uppercase; letter-spacing: 1px; font-size: 0.9rem; border-left: 2px solid var(--blue-slate); padding-left: 30px; transition: color 0.3s ease; }
+        .nav-projects-label:hover { color: var(--soft-blush); }
+        
+        /* Contact Button inside Nav */
+        .btn { background-color: var(--desert-sand); color: var(--ink-black); padding: 8px 20px; border-radius: 5px; font-weight: bold; display: inline-block; border: 2px solid transparent; cursor: pointer; transition: all 0.3s ease; text-decoration: none; }
+        .btn:hover { background-color: var(--soft-blush); border-color: var(--desert-sand); color: var(--ink-black); }
+
+        /* Projects Page Specific Styles */
+        .page-header { background-color: var(--blue-slate); color: var(--soft-blush); padding: 60px 5%; text-align: center; }
+        .page-header h1 { font-size: 2.5rem; margin-bottom: 10px; }
+        .container { padding: 60px 5%; max-width: 1000px; margin: auto; }
+        
+        /* Project Cards */
+        .project-card { background-color: white; border: 1px solid var(--cool-steel); border-radius: 8px; overflow: hidden; margin-bottom: 40px; box-shadow: 0 4px 6px rgba(0,0,0,0.05); display: flex; flex-direction: column; }
+        @media (min-width: 768px) { .project-card { flex-direction: row; } }
+        
+        /* Image placeholder style */
+        .project-image { background-color: var(--soft-blush); min-height: 200px; display: flex; align-items: center; justify-content: center; color: var(--blue-slate); font-weight: bold; flex: 1; border-bottom: 1px solid var(--cool-steel); }
+        @media (min-width: 768px) { .project-image { border-bottom: none; border-right: 1px solid var(--cool-steel); max-width: 350px; } }
+        
+        .project-details { padding: 30px; flex: 2; }
+        .project-details h3 { color: var(--ink-black); margin-top: 0; font-size: 1.5rem; }
+        .tech-stack { display: flex; gap: 10px; margin-bottom: 15px; flex-wrap: wrap; }
+        .tech-badge { background-color: var(--desert-sand); color: var(--ink-black); padding: 4px 10px; border-radius: 4px; font-size: 0.8rem; font-weight: bold; }
+        
+        footer { background-color: var(--ink-black); color: var(--cool-steel); text-align: center; padding: 30px 5%; margin-top: 40px; }
+    </style>
+</head>
+<body>
+
+    <nav>
+        <div class="nav-left">
+            <a href="index.html" class="brand-link">
+                <img src="camelwell.png" alt="Camden Elwell Logo" class="nav-logo">
+                <div class="brand-text">
+                    <span class="brand-name">Camden Elwell</span>
+                    <span class="brand-title">IT Portfolio</span>
+                </div>
+            </a>
+            <a href="index.html" class="nav-projects-label">Home</a> 
+        </div>
+
+        <a href="mailto:camdenelwell@gmail.com" class="btn">Contact</a>
+    </nav>
+
+    <header class="page-header">
+        <h1>Project Portfolio</h1>
+        <p>A showcase of technical implementations, software development, and digital media solutions.</p>
+    </header>
+
+    <section class="container">
+        
+        <div class="project-card">
+            <div class="project-image">
+                [Insert Screenshot / Image Here]
+            </div>
+            <div class="project-details">
+                <h3>Python Data Analysis Script</h3>
+                <div class="tech-stack">
+                    <span class="tech-badge">Python</span>
+                    <span class="tech-badge">Git</span>
+                    <span class="tech-badge">Data Analysis</span>
+                </div>
+                <p>Developed a script to automate [Insert Problem Here]. By utilizing [Insert Libraries/Concepts], I was able to reduce processing time and deliver cleaner datasets for evaluation. This project required a deep understanding of logical data structures.</p>
+            </div>
+        </div>
+
+        <div class="project-card">
+            <div class="project-image">
+                [Insert Screenshot / Image Here]
+            </div>
+            <div class="project-details">
+                <h3>Esports OBS Broadcast Setup</h3>
+                <div class="tech-stack">
+                    <span class="tech-badge">OBS Studio</span>
+                    <span class="tech-badge">Network Configuration</span>
+                    <span class="tech-badge">Hardware</span>
+                </div>
+                <p>Configured and optimized the broadcast environment for live streaming. Managed scene switching, audio routing, and network stability to ensure high-fidelity transmission with minimal latency during competitive events.</p>
+            </div>
+        </div>
+
+        <div class="project-card">
+            <div class="project-image">
+                [Insert Screenshot / Image Here]
+            </div>
+            <div class="project-details">
+                <h3>Digital Media & Brand Asset Design</h3>
+                <div class="tech-stack">
+                    <span class="tech-badge">Adobe Photoshop</span>
+                    <span class="tech-badge">Adobe Illustrator</span>
+                </div>
+                <p>Created comprehensive digital assets including transparent vector graphics and promotional materials. Utilized non-destructive editing techniques such as layer masking and knockouts to ensure assets remained versatile for web and print.</p>
+            </div>
+        </div>
+
+    </section>
+
+    <footer>
+        <p>&copy; 2026 Camden Elwell | Vero Beach, FL</p>
+    </footer>
+
+</body>
+</html>

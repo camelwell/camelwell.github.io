@@ -4,73 +4,172 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Camden Elwell - Projects</title>
+    
     <link rel="icon" type="image/png" href="favicon.png">
+    
     <style>
-        :root { --ink-black: #0d1f2d; --blue-slate: #546a7b; --cool-steel: #9ea3b0; --soft-blush: #fae1df; --desert-sand: #e4c3ad; }
-        body { font-family: 'Segoe UI', sans-serif; margin: 0; padding: 0; background-color: #fcfcfc; color: var(--ink-black); line-height: 1.6; }
-        a { text-decoration: none; color: var(--blue-slate); transition: color 0.3s ease; }
-        
-        nav { background-color: var(--ink-black); padding: 0.5rem 5%; display: flex; justify-content: space-between; align-items: center; position: sticky; top: 0; z-index: 1000; height: 65px; }
-        .nav-left { display: flex; align-items: center; gap: 20px; }
-        .brand-link { display: flex; align-items: center; gap: 15px; }
-        .nav-logo { height: 50px; }
-        .brand-name { color: var(--soft-blush); font-size: 1.4rem; font-weight: bold; }
-        
-        .nav-links { display: flex; gap: 20px; border-left: 2px solid var(--blue-slate); padding-left: 20px; }
-        .nav-label { color: var(--cool-steel); font-weight: bold; text-transform: uppercase; font-size: 0.85rem; }
-        .nav-label:hover { color: var(--soft-blush); }
+        :root {
+            --ink-black: #0d1f2d;
+            --blue-slate: #546a7b;
+            --cool-steel: #9ea3b0;
+            --soft-blush: #fae1df;
+            --desert-sand: #e4c3ad;
+        }
 
-        .btn { background-color: var(--desert-sand); color: var(--ink-black); padding: 10px 22px; border-radius: 5px; font-weight: bold; border: none; cursor: pointer; display: inline-block; transition: all 0.3s ease;}
-        .btn:hover { background-color: var(--soft-blush); border-color: var(--desert-sand); }
-        .contact-dropdown { position: relative; }
-        .contact-content { display: none; position: absolute; right: 0; top: 130%; background-color: var(--soft-blush); min-width: 260px; padding: 20px; border-radius: 8px; border: 2px solid var(--desert-sand); z-index: 1001; box-shadow: 0px 8px 16px rgba(0,0,0,0.2); }
-        .contact-content.show { display: block; }
-        .contact-content p { margin: 8px 0; display: flex; align-items: center;}
+        html { scroll-behavior: smooth; }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #fcfcfc;
+            color: var(--ink-black);
+            line-height: 1.6;
+        }
+
+        a { text-decoration: none; color: var(--blue-slate); transition: color 0.3s ease; }
+
+        /* Navigation (Matched Exactly to Home Page) */
+        nav {
+            background-color: var(--ink-black);
+            padding: 0.5rem 5%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .nav-left { display: flex; align-items: center; gap: 20px; flex-wrap: wrap; }
+        .brand-link { display: flex; flex-direction: row; align-items: center; gap: 15px; text-decoration: none; margin-right: 10px; }
+        .nav-logo { height: 50px; width: auto; display: block; transition: transform 0.3s ease; }
+        .brand-link:hover .nav-logo { transform: scale(1.05); }
+        .brand-text { display: flex; flex-direction: column; justify-content: center; text-align: left; }
+        .brand-name { color: var(--soft-blush); font-size: 1.5rem; font-weight: bold; line-height: 1.2; white-space: nowrap; }
+        .brand-title { color: var(--cool-steel); font-size: 0.9rem; text-transform: uppercase; letter-spacing: 1px; line-height: 1.2; white-space: nowrap; }
+
+        /* Navigation Tabs Logic */
+        .nav-links { display: flex; gap: 15px; border-left: 2px solid var(--blue-slate); padding-left: 20px; }
+        .nav-label { color: var(--cool-steel); font-weight: bold; text-transform: uppercase; letter-spacing: 1px; font-size: 0.9rem; transition: color 0.3s ease; }
+        .nav-label:hover { color: var(--soft-blush); }
         
+        /* Hide Projects link because we are on Projects */
+        .nav-projects-link { display: none; }
+
+        /* General Button Style */
+        .btn {
+            background-color: var(--desert-sand);
+            color: var(--ink-black);
+            padding: 12px 25px;
+            border-radius: 5px;
+            font-weight: bold;
+            display: inline-block;
+            border: 2px solid transparent;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
+        }
+        .btn:hover { background-color: var(--soft-blush); border-color: var(--desert-sand); color: var(--ink-black); }
+
+        /* Contact Dropdown */
+        .contact-dropdown { position: relative; display: inline-block; }
+        .contact-dropdown .btn { margin: 0; padding: 8px 20px; }
+        
+        .contact-content {
+            display: none;
+            position: absolute;
+            right: 0;
+            top: 120%;
+            background-color: var(--soft-blush);
+            min-width: 260px;
+            box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+            z-index: 1;
+            border-radius: 8px;
+            padding: 20px;
+            border: 2px solid var(--desert-sand);
+        }
+
+        .contact-content.show { display: block; }
+        .contact-content p { margin: 8px 0; color: var(--ink-black); font-size: 0.95rem; display: flex; align-items: center; }
+        .contact-content a { font-weight: bold; }
+        .contact-content a:hover { color: var(--ink-black); text-decoration: underline; }
+
         .copy-container { display: inline-flex; align-items: center; position: relative; }
         .copy-btn { background: none; border: none; cursor: pointer; font-size: 1.1rem; margin-left: 8px; padding: 0; transition: transform 0.2s ease; }
         .copy-btn:hover { transform: scale(1.2); }
         .copy-msg { font-size: 0.85rem; color: #2e7d32; font-weight: bold; margin-left: 8px; opacity: 0; transition: opacity 0.3s ease; pointer-events: none; }
         .copy-msg.show { opacity: 1; }
 
+        /* Page Headers and Container */
         .page-header { background-color: var(--blue-slate); color: var(--soft-blush); padding: 60px 5%; text-align: center; }
+        .page-header h1 { font-size: 2.5rem; margin-bottom: 10px; }
         .container { padding: 60px 5%; max-width: 1000px; margin: auto; }
         
-        .project-card { background: white; border: 1px solid var(--cool-steel); border-radius: 8px; margin-bottom: 50px; display: flex; flex-direction: column; overflow: visible; position: relative; box-shadow: 0 4px 6px rgba(0,0,0,0.05);}
+        /* Project Cards */
+        .project-card { background-color: white; border: 1px solid var(--cool-steel); border-radius: 8px; margin-bottom: 40px; box-shadow: 0 4px 6px rgba(0,0,0,0.05); display: flex; flex-direction: column; position: relative; overflow: visible; }
         @media (min-width: 768px) { .project-card { flex-direction: row; } }
-
-        .project-media { flex: 1; background: transparent; position: relative; z-index: 1; transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275); display: flex; align-items: center; justify-content: center; }
-        .project-media:hover { transform: scale(1.35); z-index: 100; box-shadow: 0 20px 40px rgba(0,0,0,0.5); background: white; border-radius: 8px; }
-        .project-media img, .project-media iframe { width: 100%; height: 100%; object-fit: cover; border-radius: 8px 0 0 8px; min-height: 300px; border: none;}
-        .project-media:hover img { object-fit: contain; }
-
-        .project-details { padding: 30px; flex: 1.5; }
-        .project-details h3 { color: var(--ink-black); margin-top: 0; font-size: 1.5rem; }
-        .project-details p { margin-bottom: 10px; font-size: 0.95rem;}
-        .tech-badge { background: var(--soft-blush); color: var(--ink-black); padding: 4px 12px; border-radius: 4px; font-size: 0.75rem; font-weight: bold; margin-right: 8px; display: inline-block; margin-bottom: 15px; }
         
-        .repo-links { margin-top: 20px; display: flex; gap: 15px; }
-        .repo-link { display: inline-block; font-weight: bold; color: var(--blue-slate); font-size: 0.9rem; border: 1px solid var(--blue-slate); padding: 6px 15px; border-radius: 4px; transition: all 0.3s ease; }
+        /* Media Container */
+        .project-media { 
+            background-color: transparent; 
+            display: flex; 
+            align-items: center; 
+            justify-content: center; 
+            flex: 1; 
+            position: relative;
+            z-index: 1;
+            border-radius: 8px 8px 0 0;
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275); 
+        }
+        @media (min-width: 768px) { .project-media { max-width: 400px; min-height: 250px; border-radius: 8px 0 0 8px; } }
+
+        .project-media:hover {
+            transform: scale(1.35); 
+            z-index: 100; 
+            box-shadow: 0 20px 40px rgba(0,0,0,0.6); 
+            border-radius: 8px; 
+            background-color: white;
+        }
+
+        .project-media img { width: 100%; height: 100%; object-fit: cover; border-radius: inherit; }
+        .project-media:hover img { object-fit: contain; } /* Uncrop on hover */
+
+        .project-media iframe { width: 100%; height: 100%; border: none; min-height: 250px; border-radius: inherit; }
+
+        .project-details { padding: 30px; flex: 2; }
+        .project-details h3 { color: var(--ink-black); margin-top: 0; font-size: 1.5rem; }
+        .tech-stack { display: flex; gap: 10px; margin-bottom: 15px; flex-wrap: wrap; }
+        .tech-badge { background-color: var(--desert-sand); color: var(--ink-black); padding: 4px 10px; border-radius: 4px; font-size: 0.8rem; font-weight: bold; }
+        
+        /* Bitbucket Repository Links */
+        .repo-links { margin-top: 20px; display: flex; gap: 15px; flex-wrap: wrap; }
+        .repo-link { display: inline-block; font-weight: bold; color: var(--blue-slate); font-size: 0.95rem; border: 1px solid var(--blue-slate); padding: 5px 12px; border-radius: 4px; transition: all 0.3s ease; }
         .repo-link:hover { background-color: var(--blue-slate); color: var(--soft-blush); }
 
-        footer { background-color: var(--ink-black); color: var(--cool-steel); text-align: center; padding: 40px; }
+        footer { background-color: var(--ink-black); color: var(--cool-steel); text-align: center; padding: 30px 5%; margin-top: 40px; }
     </style>
 </head>
 <body>
+
     <nav>
         <div class="nav-left">
             <a href="index.html" class="brand-link">
-                <img src="camelwell.png" alt="Logo" class="nav-logo">
-                <div class="brand-text"><span class="brand-name">Camden Elwell</span></div>
+                <img src="camelwell.png" alt="Camden Elwell Logo" class="nav-logo">
+                <div class="brand-text">
+                    <span class="brand-name">Camden Elwell</span>
+                    <span class="brand-title">IT Portfolio</span>
+                </div>
             </a>
             <div class="nav-links">
                 <a href="index.html" class="nav-label">Home</a>
-                <a href="projects.html" class="nav-label">Projects</a>
+                <a href="projects.html" class="nav-label nav-projects-link">Projects</a>
                 <a href="resume.html" class="nav-label">Resume</a>
             </div>
         </div>
+
         <div class="contact-dropdown">
-            <button class="btn" id="contactBtn">Contact</button>
+            <a href="#" class="btn" id="contactBtn">Contact</a>
             <div class="contact-content" id="contactDropdown">
                 <p>
                     <strong>Email:</strong> &nbsp;<a href="mailto:camdenelwell@gmail.com">camdenelwell@gmail.com</a>
@@ -80,6 +179,7 @@
                     </span>
                 </p>
                 <p><strong>Phone:</strong> &nbsp;(772) 643-5646</p>
+                <p><strong>Location:</strong> &nbsp;Tallahassee, FL</p>
             </div>
         </div>
     </nav>
@@ -97,7 +197,11 @@
             </div>
             <div class="project-details">
                 <h3>Applied Data Analytics in R</h3>
-                <span class="tech-badge">R Programming</span><span class="tech-badge">Data Visualization</span><span class="tech-badge">Information Management</span>
+                <div class="tech-stack">
+                    <span class="tech-badge">R Programming</span>
+                    <span class="tech-badge">Data Visualization</span>
+                    <span class="tech-badge">Information Management</span>
+                </div>
                 
                 <p><strong>Overview:</strong> Analyzed professional match statistics from the Overwatch Champions Series (OWCS) using FaceIT API data to determine the strongest statistical predictors of victory (fragging vs. objective play).</p>
                 <p><strong>My Role:</strong> Lead Data Analyst / Programmer</p>
@@ -107,10 +211,16 @@
         </div>
 
         <div class="project-card">
-            <div class="project-media"><img src="rss-feed.gif" alt="RSS App"></div>
+            <div class="project-media">
+                <img src="rss-feed.gif" alt="RSS App">
+            </div>
             <div class="project-details">
                 <h3>Android Mobile Development</h3>
-                <span class="tech-badge">Java</span><span class="tech-badge">Android SDK</span><span class="tech-badge">Git/Bitbucket</span>
+                <div class="tech-stack">
+                    <span class="tech-badge">Java</span>
+                    <span class="tech-badge">Android SDK</span>
+                    <span class="tech-badge">Git/Bitbucket</span>
+                </div>
                 
                 <p><strong>Overview:</strong> Developed a functional RSS Feed Reader application for Android designed to parse and display live data feeds efficiently with a clean UI/UX.</p>
                 <p><strong>My Role:</strong> Lead Android Developer</p>
@@ -125,10 +235,16 @@
         </div>
 
         <div class="project-card">
-            <div class="project-media"><iframe src="https://www.youtube.com/embed/8rA7FQgvrXU" allowfullscreen></iframe></div>
+            <div class="project-media">
+                <iframe src="https://www.youtube.com/embed/8rA7FQgvrXU" title="Unity VR Project Demo" allowfullscreen></iframe>
+            </div>
             <div class="project-details">
                 <h3>Immersive VR Environment</h3>
-                <span class="tech-badge">Unity 3D</span><span class="tech-badge">Virtual Reality</span><span class="tech-badge">C# Scripting</span>
+                <div class="tech-stack">
+                    <span class="tech-badge">Unity 3D</span>
+                    <span class="tech-badge">Virtual Reality</span>
+                    <span class="tech-badge">C# Scripting</span>
+                </div>
                 
                 <p><strong>Overview:</strong> Engineered and designed an interactive Virtual Reality environment using Unity 3D, focusing on spatial computing and user experience.</p>
                 <p><strong>My Role:</strong> VR Developer & Environment Designer</p>
@@ -138,10 +254,16 @@
         </div>
 
         <div class="project-card">
-            <div class="project-media"><img src="photoshop-project.png" alt="Digital Compositing"></div>
+            <div class="project-media">
+                <img src="photoshop-project.png" alt="Digital Compositing">
+            </div>
             <div class="project-details">
                 <h3>Advanced Digital Compositing</h3>
-                <span class="tech-badge">Adobe Photoshop</span><span class="tech-badge">Graphic Design</span><span class="tech-badge">Visual Communication</span>
+                <div class="tech-stack">
+                    <span class="tech-badge">Adobe Photoshop</span>
+                    <span class="tech-badge">Graphic Design</span>
+                    <span class="tech-badge">Visual Communication</span>
+                </div>
                 
                 <p><strong>Overview:</strong> A professional-grade digital asset utilizing non-destructive editing workflows, advanced layer masking, and color grading to create a cohesive image.</p>
                 <p><strong>My Role:</strong> Graphic Designer / Digital Artist</p>
@@ -152,13 +274,29 @@
 
     </section>
 
-    <footer>&copy; 2026 Camden Elwell | Tallahassee, FL</footer>
+    <footer>
+        <p>&copy; 2026 Camden Elwell | Tallahassee, FL</p>
+    </footer>
 
     <script>
-        const btn = document.getElementById('contactBtn');
-        const dropdown = document.getElementById('contactDropdown');
-        btn.onclick = (e) => { e.preventDefault(); dropdown.classList.toggle('show'); e.stopPropagation(); };
-        window.onclick = () => dropdown.classList.remove('show');
+        document.addEventListener('DOMContentLoaded', function() {
+            const btn = document.getElementById('contactBtn');
+            const dropdown = document.getElementById('contactDropdown');
+
+            btn.addEventListener('click', function(event) {
+                event.preventDefault(); 
+                dropdown.classList.toggle('show');
+                event.stopPropagation(); 
+            });
+
+            window.addEventListener('click', function(event) {
+                if (!event.target.matches('#contactBtn') && !dropdown.contains(event.target)) {
+                    if (dropdown.classList.contains('show')) {
+                        dropdown.classList.remove('show');
+                    }
+                }
+            });
+        });
 
         function copyEmail(event) {
             event.preventDefault();
@@ -166,9 +304,15 @@
             const btn = event.currentTarget;
             const originalText = btn.innerText;
             const msg = document.getElementById('copyMsg');
+            
             btn.innerText = '✅';
             msg.classList.add('show');
-            setTimeout(() => { btn.innerText = originalText; msg.classList.remove('show'); }, 2000); 
+            
+            setTimeout(() => { 
+                btn.innerText = originalText; 
+                msg.classList.remove('show');
+            }, 2000); 
+            
             event.stopPropagation(); 
         }
     </script>

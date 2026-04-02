@@ -180,7 +180,7 @@
         /* Dunes — parallax background: original + mirrored copy for full horizontal coverage */
         .hero-bg {
             position: absolute;
-            top: -20%;
+            top: 0;
             left: -50vw;
             width: 200vw;
             display: flex;
@@ -205,9 +205,9 @@
             background: linear-gradient(
                 to bottom,
                 rgba(10,10,10,0.0) 0%,
-                rgba(10,10,10,0.0) 50%,
-                rgba(10,10,10,0.75) 80%,
-                rgba(10,10,10,0.95) 100%
+                rgba(10,10,10,0.0) 35%,
+                rgba(10,10,10,0.85) 70%,
+                rgba(10,10,10,0.97) 100%
             );
             z-index: 1;
         }
@@ -215,7 +215,7 @@
         /* Camel asset — foreground parallax layer, same scale as dune */
         .hero-camel {
             position: absolute;
-            top: -20%;
+            top: 0;
             left: 0;
             width: 100vw;
             height: auto;
@@ -237,7 +237,7 @@
             font-size: 0.7rem;
             letter-spacing: 4px;
             text-transform: uppercase;
-            color: var(--sand);
+            color: var(--black);
             margin-bottom: 14px;
         }
 
@@ -246,7 +246,7 @@
             font-size: clamp(3.5rem, 9vw, 7.5rem);
             line-height: 0.9;
             letter-spacing: 3px;
-            color: var(--white);
+            color: var(--black);
             margin-bottom: 20px;
         }
 
@@ -502,10 +502,10 @@
             inset: 0;
             background: linear-gradient(
                 to bottom,
-                rgba(10,10,10,0.25) 0%,
-                rgba(10,10,10,0.1) 40%,
-                rgba(10,10,10,0.55) 85%,
-                rgba(10,10,10,0.92) 100%
+                rgba(10,10,10,0.55) 0%,
+                rgba(10,10,10,0.4) 40%,
+                rgba(10,10,10,0.75) 85%,
+                rgba(10,10,10,0.97) 100%
             );
             pointer-events: none;
         }
@@ -544,14 +544,13 @@
             transition: opacity 0.6s;
         }
 
-        /* Small subtitle below the ASCII text */
-        .skills-hero-sub {
-            font-family: 'DM Mono', monospace;
-            font-size: 0.65rem;
-            letter-spacing: 4px;
-            text-transform: uppercase;
-            color: rgba(225,206,122,0.5);
-            margin-top: 8px;
+        .skills-static-title {
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: clamp(3rem, 8vw, 6rem);
+            letter-spacing: 6px;
+            color: var(--sand);
+            margin: 0;
+            text-shadow: 0 2px 20px rgba(0,0,0,0.8);
         }
 
         /* --- Skill cards area --- */
@@ -795,7 +794,7 @@
             <div class="contact-panel" id="contactDropdown">
                 <p>
                     <strong>Email</strong>
-                    <a href="/cdn-cgi/l/email-protection#197a78747d7c777c756e7c7575597e74787075377a7674"><span class="__cf_email__" data-cfemail="5b383a363f3e353e372c3e37371b3c363a323775383436">[email&#160;protected]</span></a>
+                    <a href="mailto:camdenelwell@gmail.com">camdenelwell@gmail.com</a>
                     <button class="copy-btn" onclick="copyEmail(event)" title="Copy">📋</button>
                     <span class="copy-msg" id="copyMsg">Copied!</span>
                 </p>
@@ -883,14 +882,12 @@
 <!-- ===== SKILLS ===== -->
 <section id="skills" class="section">
 
-    <!-- FaultyTerminal hero: CRT background + ASCII "TECHNICAL SKILLS" -->
+    <!-- FaultyTerminal hero: CRT background + static title -->
     <div class="skills-hero" id="skills-hero">
         <canvas id="faulty-canvas"></canvas>
         <div class="skills-hero-overlay"></div>
         <div class="skills-hero-content">
-            <div id="ascii-title-stage">
-                <div class="ascii-title-fallback">TECHNICAL SKILLS</div>
-            </div>
+            <h2 class="skills-static-title">Technical Skills</h2>
         </div>
     </div>
 

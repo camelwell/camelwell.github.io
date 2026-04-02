@@ -1,0 +1,11 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(python -c \":*)",
+      "Bash(python3 -c \":*)",
+      "Bash(pwsh --version)",
+      "Bash(/c/Windows/System32/WindowsPowerShell/v1.0/powershell -ExecutionPolicy Bypass -File \"C:\\\\Users\\\\camde\\\\Downloads\\\\camelwell-web\\\\replace-scripts.ps1\")",
+      "Bash(git --version)"
+    ]
+  }
+}

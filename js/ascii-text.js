@@ -157,10 +157,10 @@ float a=texture2D(uTexture,p).a;gl_FragColor=vec4(r,g,b,a);}`;
     setTimeout(() => {
       const el = document.getElementById('ascii-title-stage');
       if (!el) return;
-      const w = el.offsetWidth || 800, h = el.offsetHeight || 180;
+      const w = el.offsetWidth || 1100, h = el.offsetHeight || 260;
       const inst = new CanvAscii(
-        { text:'TECHNICAL SKILLS', asciiFontSize:7, textFontSize:90,
-          textColor:'#fdf9f3', planeBaseHeight:5, enableWaves:true },
+        { text:'TECHNICAL SKILLS', asciiFontSize:9, textFontSize:130,
+          textColor:'#fdf9f3', planeBaseHeight:8, enableWaves:true },
         el, w, h
       );
       inst.init().then(() => {

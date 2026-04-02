@@ -177,25 +177,21 @@
             background-color: #ffffff;
         }
 
-        /* Dunes — parallax background: original + mirrored copy for full horizontal coverage */
+        /* Dunes — parallax background */
         .hero-bg {
             position: absolute;
-            top: 0;
-            left: -50vw;
-            width: 200vw;
-            display: flex;
+            bottom: 0;
+            top: auto;
+            left: 0;
+            width: 100%;
             will-change: transform;
             pointer-events: none;
         }
         .hero-dune {
-            width: 50%;
+            width: 100%;
             height: auto;
-            flex-shrink: 0;
             display: block;
             mix-blend-mode: multiply;
-        }
-        .hero-dune--flip {
-            transform: scaleX(-1);
         }
 
         /* Dark gradient overlay at bottom for text legibility */
@@ -215,7 +211,8 @@
         /* Camel asset — foreground parallax layer, same scale as dune */
         .hero-camel {
             position: absolute;
-            top: 0;
+            bottom: 0;
+            top: auto;
             left: 0;
             width: 100vw;
             height: auto;
@@ -808,8 +805,7 @@
 <!-- ===== HERO ===== -->
 <section class="hero" id="hero">
     <div class="hero-bg" id="heroBg">
-        <img src="dunes55x20.png" class="hero-dune" alt="">
-        <img src="dunes55x20.png" class="hero-dune hero-dune--flip" alt="">
+        <img src="dunes55x30.png" class="hero-dune" alt="">
     </div>
     <div class="hero-overlay"></div>
     <img src="camelwell55x20.png" alt="" class="hero-camel" id="heroCamel">

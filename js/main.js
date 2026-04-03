@@ -1,11 +1,9 @@
 /* ---- Parallax ---- */
-const heroBg    = document.getElementById('heroBg');
 const heroCamel = document.getElementById('heroCamel');
 
 function onScroll() {
     const y = window.scrollY;
-    heroBg.style.transform    = `translateY(${y * 0.4}px)`;
-    heroCamel.style.transform = `translateY(${y * 0.2}px)`;
+    if (heroCamel) heroCamel.style.transform = `translateY(${y * 0.2}px)`;
 }
 window.addEventListener('scroll', onScroll, { passive: true });
 

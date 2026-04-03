@@ -11,7 +11,9 @@ class AsciiFilter {
     Object.assign(this.domElement.style,{position:'absolute',top:'0',left:'0',width:'100%',height:'100%'});
     this.pre = document.createElement('pre'); this.domElement.appendChild(this.pre);
     this.canvas = document.createElement('canvas'); this.context = this.canvas.getContext('2d');
-    this.context.imageSmoothingEnabled = false; this.canvas.style.display='none'; this.domElement.appendChild(this.canvas);
+    this.context.imageSmoothingEnabled = false;
+    Object.assign(this.canvas.style,{position:'absolute',top:'0',left:'0',width:'100%',height:'100%',imageRendering:'pixelated',zIndex:'8'});
+    this.domElement.appendChild(this.canvas);
     this.deg=0; this.mouse={x:0,y:0}; this.center={x:0,y:0};
     this._onMove = e => { this.mouse={x:e.clientX,y:e.clientY}; };
     document.addEventListener('mousemove', this._onMove);

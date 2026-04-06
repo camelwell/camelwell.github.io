@@ -3,381 +3,923 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Camden Elwell - Projects</title>
-    
+    <title>Camden Elwell — Projects</title>
     <link rel="icon" type="image/png" href="favicon.png">
-    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Crimson+Pro:ital,wght@0,300;0,400;0,600;1,300;1,400&family=DM+Mono:wght@400;500&family=IBM+Plex+Mono:wght@500;600&display=swap" rel="stylesheet">
+
     <style>
         :root {
-            --ink-black: #0d1f2d;
-            --blue-slate: #546a7b;
-            --cool-steel: #9ea3b0;
-            --soft-blush: #fae1df;
-            --desert-sand: #e4c3ad;
+            --black:   #0a0a0a;
+            --white:   #fafaf5;
+            --sand:    #e1ce7a;
+            --cream:   #fbffb9;
+            --peach:   #fdd692;
+            --coral:   #ec7357;
+            --brown:   #754f44;
+            --brown-light: #9a6a5c;
         }
 
+        *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
         html { scroll-behavior: smooth; }
 
         body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            margin: 0;
-            padding: 0;
-            background-color: #fcfcfc;
-            color: var(--ink-black);
-            line-height: 1.6;
+            font-family: 'Crimson Pro', Georgia, serif;
+            background-color: var(--black);
+            color: var(--white);
+            overflow-x: hidden;
         }
 
-        /* Image Lightbox / Modal */
-        .modal {
-            display: none; /* Hidden by default */
-            position: fixed; 
-            z-index: 2000; /* Sits on top of absolutely everything */
-            left: 0; 
-            top: 0; 
-            width: 100%; 
-            height: 100%; 
-            background-color: rgba(0, 0, 0, 0.75); /* The semi-transparent black shadow */
-            cursor: zoom-out; /* Changes cursor to a minus-magnifying glass */
-            opacity: 0;
-            transition: opacity 0.3s ease;
-        }
-        
-        .modal.show {
-            display: block;
-            opacity: 1;
-        }
+        a { text-decoration: none; color: inherit; }
 
-        .modal-content {
-            margin: auto;
-            display: block;
-            max-width: 90%;
-            max-height: 90vh;
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            border-radius: 8px;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
-            cursor: default;
-        }
-
-        /* Makes it obvious the project image can be clicked */
-        .clickable-img {
-            cursor: zoom-in; 
-        }
-
-        a { text-decoration: none; color: var(--blue-slate); transition: color 0.3s ease; }
-
-        /* Navigation (Matched Exactly to Home Page) */
+        /* ===================== NAV ===================== */
         nav {
-            background-color: var(--ink-black);
-            padding: 0.5rem 5%;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            position: sticky;
-            top: 0;
+            position: fixed;
+            top: 0; left: 0; right: 0;
             z-index: 1000;
+            padding: 0 5%;
+            height: 64px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            background: rgba(10,10,10,0.85);
+            backdrop-filter: blur(12px);
+            border-bottom: 1px solid rgba(225,206,122,0.15);
+            transition: background 0.3s;
         }
 
-        .nav-left { display: flex; align-items: center; gap: 20px; flex-wrap: wrap; }
-        .brand-link { display: flex; flex-direction: row; align-items: center; gap: 15px; text-decoration: none; margin-right: 10px; }
-        .nav-logo { height: 50px; width: auto; display: block; transition: transform 0.3s ease; }
-        .brand-link:hover .nav-logo { transform: scale(1.05); }
-        .brand-text { display: flex; flex-direction: column; justify-content: center; text-align: left; }
-        .brand-name { color: var(--soft-blush); font-size: 1.5rem; font-weight: bold; line-height: 1.2; white-space: nowrap; }
-        .brand-title { color: var(--cool-steel); font-size: 0.9rem; text-transform: uppercase; letter-spacing: 1px; line-height: 1.2; white-space: nowrap; }
-
-        /* Navigation Tabs Logic */
-        .nav-links { display: flex; gap: 15px; border-left: 2px solid var(--blue-slate); padding-left: 20px; }
-        .nav-label { color: var(--cool-steel); font-weight: bold; text-transform: uppercase; letter-spacing: 1px; font-size: 0.9rem; transition: color 0.3s ease; }
-        .nav-label:hover { color: var(--soft-blush); }
-        
-        /* Hide Projects link because we are on Projects */
-        .nav-projects-link { display: none; }
-
-        /* General Button Style */
-        .btn {
-            background-color: var(--desert-sand);
-            color: var(--ink-black);
-            padding: 12px 25px;
-            border-radius: 5px;
-            font-weight: bold;
-            display: inline-block;
-            border: 2px solid transparent;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            text-decoration: none;
+        .nav-brand {
+            display: flex;
+            align-items: center;
+            gap: 14px;
         }
-        .btn:hover { background-color: var(--soft-blush); border-color: var(--desert-sand); color: var(--ink-black); }
+
+        .nav-logo {
+            height: 38px;
+            width: auto;
+            display: block;
+        }
+
+        .nav-brand-text .name {
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: 1.4rem;
+            letter-spacing: 2px;
+            color: var(--peach);
+            line-height: 1;
+        }
+
+        .nav-brand-text .title {
+            font-family: 'DM Mono', monospace;
+            font-size: 0.6rem;
+            letter-spacing: 3px;
+            color: var(--sand);
+            text-transform: uppercase;
+        }
+
+        .nav-right {
+            display: flex;
+            align-items: center;
+            gap: 30px;
+        }
+
+        .nav-link {
+            font-family: 'DM Mono', monospace;
+            font-size: 0.7rem;
+            letter-spacing: 2.5px;
+            text-transform: uppercase;
+            color: var(--sand);
+            transition: color 0.25s;
+        }
+        .nav-link:hover { color: var(--coral); }
 
         /* Contact Dropdown */
-        .contact-dropdown { position: relative; display: inline-block; }
-        .contact-dropdown .btn { margin: 0; padding: 8px 20px; }
-        
-        .contact-content {
+        .contact-dropdown { position: relative; }
+
+        .contact-btn {
+            font-family: 'DM Mono', monospace;
+            font-size: 0.7rem;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            padding: 8px 18px;
+            background: var(--coral);
+            color: var(--black);
+            border: none;
+            border-radius: 2px;
+            cursor: pointer;
+            font-weight: 500;
+            transition: background 0.25s;
+        }
+        .contact-btn:hover { background: var(--peach); }
+
+        .contact-panel {
             display: none;
             position: absolute;
             right: 0;
-            top: 120%;
-            background-color: var(--soft-blush);
-            min-width: 260px;
-            box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
-            z-index: 1;
-            border-radius: 8px;
-            padding: 20px;
-            border: 2px solid var(--desert-sand);
+            top: calc(100% + 12px);
+            background: var(--black);
+            border: 1px solid var(--sand);
+            border-radius: 4px;
+            padding: 20px 24px;
+            min-width: 280px;
+            box-shadow: 0 16px 40px rgba(0,0,0,0.5);
         }
+        .contact-panel.show { display: block; }
 
-        .contact-content.show { display: block; }
-        .contact-content p { margin: 8px 0; color: var(--ink-black); font-size: 0.95rem; display: flex; align-items: center; }
-        .contact-content a { font-weight: bold; }
-        .contact-content a:hover { color: var(--ink-black); text-decoration: underline; }
+        .contact-panel p {
+            font-size: 0.95rem;
+            color: var(--white);
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        .contact-panel p:last-child { margin-bottom: 0; }
+        .contact-panel strong {
+            font-family: 'DM Mono', monospace;
+            font-size: 0.65rem;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            color: var(--sand);
+        }
+        .contact-panel a { color: var(--coral); }
+        .contact-panel a:hover { text-decoration: underline; }
 
-        .copy-container { display: inline-flex; align-items: center; position: relative; }
-        .copy-btn { background: none; border: none; cursor: pointer; font-size: 1.1rem; margin-left: 8px; padding: 0; transition: transform 0.2s ease; }
+        .copy-btn {
+            background: none;
+            border: none;
+            cursor: pointer;
+            font-size: 0.9rem;
+            padding: 0;
+            transition: transform 0.2s;
+            margin-left: 4px;
+        }
         .copy-btn:hover { transform: scale(1.2); }
-        .copy-msg { font-size: 0.85rem; color: #2e7d32; font-weight: bold; margin-left: 8px; opacity: 0; transition: opacity 0.3s ease; pointer-events: none; }
+        .copy-msg {
+            font-size: 0.75rem;
+            color: #5cb85c;
+            font-family: 'DM Mono', monospace;
+            opacity: 0;
+            transition: opacity 0.3s;
+        }
         .copy-msg.show { opacity: 1; }
 
-        /* Page Headers and Container */
-        .page-header { background-color: var(--blue-slate); color: var(--soft-blush); padding: 60px 5%; text-align: center; }
-        .page-header h1 { font-size: 2.5rem; margin-bottom: 10px; }
-        .container { padding: 60px 5%; max-width: 1000px; margin: auto; }
-        
-        /* Project Cards */
-        .project-card { background-color: white; border: 1px solid var(--cool-steel); border-radius: 8px; margin-bottom: 40px; box-shadow: 0 4px 6px rgba(0,0,0,0.05); display: flex; flex-direction: column; position: relative; overflow: visible; }
-        @media (min-width: 768px) { .project-card { flex-direction: row; } }
-        
-        /* Media Container */
-        .project-media { 
-            background-color: transparent; 
-            display: flex; 
-            align-items: center; 
-            justify-content: center; 
-            flex: 1; 
+        /* ===================== BUTTONS ===================== */
+        .btn-primary {
+            font-family: 'DM Mono', monospace;
+            font-size: 0.7rem;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            padding: 13px 28px;
+            background: var(--coral);
+            color: var(--black);
+            border-radius: 2px;
+            font-weight: 500;
+            transition: background 0.25s, transform 0.2s;
+            display: inline-block;
+        }
+        .btn-primary:hover { background: var(--peach); transform: translateY(-2px); }
+
+        .btn-secondary {
+            font-family: 'DM Mono', monospace;
+            font-size: 0.7rem;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            padding: 12px 28px;
+            background: transparent;
+            color: var(--sand);
+            border: 1px solid var(--sand);
+            border-radius: 2px;
+            transition: background 0.25s, color 0.25s, transform 0.2s;
+            display: inline-block;
+        }
+        .btn-secondary:hover {
+            background: var(--sand);
+            color: var(--black);
+            transform: translateY(-2px);
+        }
+
+        /* ===================== SHARED ===================== */
+        .section {
+            padding: 72px 5%;
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 0.7s ease, transform 0.7s ease;
+        }
+        .section.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .section-inner { max-width: 1060px; margin: 0 auto; }
+
+        .section-label {
+            font-family: 'DM Mono', monospace;
+            font-size: 0.65rem;
+            letter-spacing: 4px;
+            text-transform: uppercase;
+            color: var(--coral);
+            margin-bottom: 12px;
+            display: block;
+        }
+
+        .section-title {
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: clamp(2.6rem, 6vw, 4.5rem);
+            line-height: 1;
+            letter-spacing: 2px;
+            margin-bottom: 38px;
+            color: var(--white);
+        }
+
+        .dot-divider {
+            width: 100%;
+            height: 2px;
+            background-image: radial-gradient(circle, var(--sand) 1px, transparent 1px);
+            background-size: 10px 2px;
+            opacity: 0.3;
+            margin: 0;
+        }
+
+        /* ===================== PAGE HERO ===================== */
+        .page-hero {
+            padding: 150px 5% 72px;
+            text-align: center;
+            opacity: 1;
+            transform: none;
+        }
+
+        .page-hero .section-label {
+            margin-bottom: 14px;
+        }
+
+        .page-hero .page-title {
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: clamp(3.2rem, 8vw, 6rem);
+            line-height: 0.95;
+            letter-spacing: 4px;
+            color: var(--white);
+            margin-bottom: 18px;
+        }
+
+        .page-hero-sub {
+            font-family: 'Crimson Pro', serif;
+            font-size: clamp(1rem, 2vw, 1.25rem);
+            font-style: italic;
+            color: var(--peach);
+            max-width: 620px;
+            margin: 0 auto;
+            line-height: 1.7;
+        }
+
+        /* ===================== PROJECTS GRID ===================== */
+        .projects-grid {
+            max-width: 1060px;
+            margin: 0 auto;
+            display: flex;
+            flex-direction: column;
+            gap: 28px;
+        }
+
+        .project-card {
+            border: 1px solid rgba(225,206,122,0.12);
+            border-radius: 3px;
+            overflow: hidden;
+            display: grid;
+            grid-template-columns: 400px 1fr;
+            grid-template-rows: auto;
             position: relative;
-            z-index: 1;
-            border-radius: 8px 8px 0 0;
-            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275); 
+            /* Staggered reveal */
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 0.7s ease, transform 0.7s ease, border-color 0.35s;
         }
-        @media (min-width: 768px) { .project-media { max-width: 400px; min-height: 250px; border-radius: 8px 0 0 8px; } }
-
-        .project-media:hover {
-            transform: scale(1.35); 
-            z-index: 100; 
-            box-shadow: 0 20px 40px rgba(0,0,0,0.6); 
-            border-radius: 8px; 
-            background-color: white;
+        .project-card.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        .project-card:hover {
+            border-color: rgba(236,115,87,0.35);
         }
 
-        .project-media img { width: 100%; height: 100%; object-fit: cover; border-radius: inherit; }
-        .project-media:hover img { object-fit: contain; } /* Uncrop on hover */
+        /* Left accent bar */
+        .project-card::before {
+            content: '';
+            position: absolute;
+            left: 0; top: 0; bottom: 0;
+            width: 3px;
+            background: var(--brown);
+            transition: background 0.3s;
+            z-index: 2;
+        }
+        .project-card:hover::before {
+            background: var(--coral);
+        }
 
-        .project-media iframe { width: 100%; height: 100%; border: none; min-height: 250px; border-radius: inherit; }
+        /* Project number badge */
+        .project-number {
+            position: absolute;
+            top: 16px;
+            left: 16px;
+            font-family: 'DM Mono', monospace;
+            font-size: 0.6rem;
+            letter-spacing: 1px;
+            color: var(--sand);
+            opacity: 0.35;
+            z-index: 3;
+        }
 
-        .project-details { padding: 30px; flex: 2; }
-        .project-details h3 { color: var(--ink-black); margin-top: 0; font-size: 1.5rem; }
-        .tech-stack { display: flex; gap: 10px; margin-bottom: 15px; flex-wrap: wrap; }
-        .tech-badge { background-color: var(--desert-sand); color: var(--ink-black); padding: 4px 10px; border-radius: 4px; font-size: 0.8rem; font-weight: bold; }
-        
-        /* Bitbucket Repository Links */
-        .repo-links { margin-top: 20px; display: flex; gap: 15px; flex-wrap: wrap; }
-        .repo-link { display: inline-block; font-weight: bold; color: var(--blue-slate); font-size: 0.95rem; border: 1px solid var(--blue-slate); padding: 5px 12px; border-radius: 4px; transition: all 0.3s ease; }
-        .repo-link:hover { background-color: var(--blue-slate); color: var(--soft-blush); }
+        /* ===================== MEDIA ===================== */
+        .project-media {
+            position: relative;
+            overflow: hidden;
+            background: #080808;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            min-height: 280px;
+            max-height: 320px;
+            align-self: start;
+        }
 
-        footer { background-color: var(--ink-black); color: var(--cool-steel); text-align: center; padding: 30px 5%; margin-top: 40px; }
+        .project-media video,
+        .project-media img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+            transition: transform 0.5s ease;
+        }
+        .project-card:hover .project-media video,
+        .project-card:hover .project-media img {
+            transform: scale(1.04);
+        }
+
+        .project-media img.clickable-img {
+            cursor: zoom-in;
+        }
+
+        .project-media iframe {
+            width: 100%;
+            height: 100%;
+            border: none;
+            min-height: 280px;
+        }
+
+        /* ===================== DETAILS ===================== */
+        .project-details {
+            padding: 36px 40px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .project-title {
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: 1.8rem;
+            letter-spacing: 2px;
+            color: var(--white);
+            line-height: 1.1;
+            margin-bottom: 6px;
+        }
+
+        .project-subtitle {
+            font-family: 'DM Mono', monospace;
+            font-size: 0.55rem;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            color: var(--brown-light);
+            margin-bottom: 18px;
+        }
+
+        .tech-stack {
+            display: flex;
+            gap: 8px;
+            margin-bottom: 20px;
+            flex-wrap: wrap;
+        }
+
+        .tech-badge {
+            font-family: 'DM Mono', monospace;
+            font-size: 0.55rem;
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+            padding: 5px 12px;
+            border: 1px solid rgba(225,206,122,0.25);
+            border-radius: 2px;
+            color: var(--sand);
+            transition: all 0.25s;
+        }
+        .tech-badge:hover {
+            background: var(--sand);
+            color: var(--black);
+        }
+
+        .project-description {
+            font-family: 'Crimson Pro', serif;
+            font-size: 1.1rem;
+            line-height: 1.75;
+            color: rgba(250,250,245,0.7);
+            margin-bottom: 18px;
+        }
+
+        /* Expandable details */
+        .project-expand-btn {
+            font-family: 'DM Mono', monospace;
+            font-size: 0.65rem;
+            letter-spacing: 2px;
+            color: var(--coral);
+            text-transform: uppercase;
+            cursor: pointer;
+            background: none;
+            border: none;
+            padding: 4px 0;
+            transition: color 0.25s;
+            text-align: left;
+        }
+        .project-expand-btn:hover { color: var(--peach); }
+
+        .project-body {
+            display: none;
+            margin-top: 18px;
+            padding-top: 18px;
+            border-top: 1px solid rgba(225,206,122,0.08);
+        }
+        .project-body.open { display: block; }
+
+        .project-body p {
+            font-family: 'Crimson Pro', serif;
+            font-size: 1.05rem;
+            line-height: 1.75;
+            color: rgba(250,250,245,0.65);
+            margin-bottom: 10px;
+        }
+
+        .project-body-label {
+            font-family: 'DM Mono', monospace;
+            font-size: 0.6rem;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            color: var(--coral);
+            margin: 18px 0 6px;
+        }
+
+        .project-body-label:first-child { margin-top: 0; }
+
+        /* Repo / external links */
+        .project-links {
+            display: flex;
+            gap: 10px;
+            margin-top: 22px;
+            flex-wrap: wrap;
+        }
+
+        .project-link {
+            font-family: 'DM Mono', monospace;
+            font-size: 0.6rem;
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+            padding: 8px 16px;
+            border: 1px solid rgba(225,206,122,0.3);
+            border-radius: 2px;
+            color: var(--sand);
+            transition: all 0.25s;
+        }
+        .project-link:hover {
+            background: var(--sand);
+            color: var(--black);
+        }
+
+        /* ===================== LIGHTBOX ===================== */
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 2000;
+            inset: 0;
+            background: rgba(10,10,10,0.92);
+            backdrop-filter: blur(8px);
+            cursor: zoom-out;
+        }
+        .modal.show {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .modal-content {
+            max-width: 92%;
+            max-height: 92vh;
+            border-radius: 3px;
+            border: 1px solid rgba(225,206,122,0.15);
+            cursor: default;
+        }
+
+        /* ===================== FOOTER ===================== */
+        footer {
+            background: var(--black);
+            border-top: 1px solid rgba(225,206,122,0.12);
+            padding: 40px 5%;
+            text-align: center;
+        }
+        footer p {
+            font-family: 'DM Mono', monospace;
+            font-size: 0.65rem;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            color: rgba(225,206,122,0.4);
+        }
+
+        /* ===================== RESPONSIVE ===================== */
+        @media (max-width: 860px) {
+            .project-card {
+                grid-template-columns: 1fr;
+            }
+            .project-media {
+                min-height: 240px;
+            }
+            .project-details {
+                padding: 28px 24px;
+            }
+        }
+
+        @media (max-width: 600px) {
+            .nav-link { display: none; }
+            .page-hero { padding: 120px 5% 56px; }
+            .project-details { padding: 24px 20px; }
+            .project-title { font-size: 1.5rem; }
+            .project-media { min-height: 200px; }
+        }
     </style>
 </head>
 <body>
 
-    <nav>
-        <div class="nav-left">
-            <a href="index.html" class="brand-link">
-                <img src="camelwell.png" alt="Camden Elwell Logo" class="nav-logo">
-                <div class="brand-text">
-                    <span class="brand-name">Camden Elwell</span>
-                    <span class="brand-title">IT Portfolio</span>
-                </div>
-            </a>
-            <div class="nav-links">
-                <a href="index_1.html" class="nav-label" style="color:var(--soft-blush)">&#9733; New Home</a>
-                <a href="index.html" class="nav-label">Home</a>
-                <a href="projects.html" class="nav-label nav-projects-link">Projects</a>
-                <a href="resume.html" class="nav-label">Resume</a>
-            </div>
+<!-- ===== NAV ===== -->
+<nav>
+    <a href="index.html" class="nav-brand">
+        <img src="camelwell.png" alt="Camelwell logo" class="nav-logo">
+        <div class="nav-brand-text">
+            <div class="name">Camden Elwell</div>
+            <div class="title">IT Portfolio</div>
         </div>
+    </a>
 
+    <div class="nav-right">
+        <a href="index.html" class="nav-link">Home</a>
+        <a href="resume.html" class="nav-link">Resume</a>
         <div class="contact-dropdown">
-            <a href="#" class="btn" id="contactBtn">Contact</a>
-            <div class="contact-content" id="contactDropdown">
+            <button class="contact-btn" id="contactBtn">Contact</button>
+            <div class="contact-panel" id="contactDropdown">
                 <p>
-                    <strong>Email:</strong> &nbsp;<a href="mailto:camdenelwell@gmail.com">camdenelwell@gmail.com</a>
-                    <span class="copy-container">
-                        <button class="copy-btn" onclick="copyEmail(event)" title="Copy Email">📋</button>
-                        <span class="copy-msg" id="copyMsg">Copied!</span>
-                    </span>
+                    <strong>Email</strong>
+                    <a href="mailto:camdenelwell@gmail.com">camdenelwell@gmail.com</a>
+                    <button class="copy-btn" onclick="copyEmail(event)" title="Copy">📋</button>
+                    <span class="copy-msg" id="copyMsg">Copied!</span>
                 </p>
-                <p><strong>Phone:</strong> &nbsp;(772) 643-5646</p>
-                <p><strong>Location:</strong> &nbsp;Tallahassee, FL</p>
+                <p><strong>Phone</strong> (772) 643-5646</p>
+                <p><strong>Location</strong> Tallahassee, FL</p>
             </div>
         </div>
-    </nav>
+    </div>
+</nav>
 
-    <header class="page-header">
-        <h1>Project Portfolio</h1>
-        <p>A showcase of mobile app development, virtual reality environments, data analytics, and digital media design.</p>
-    </header>
+<!-- ===== PAGE HERO ===== -->
+<section class="page-hero">
+    <span class="section-label">Portfolio</span>
+    <h1 class="page-title">Projects</h1>
+    <p class="page-hero-sub">Creative technology, software tools, data analytics, mobile development, and digital media design.</p>
+</section>
 
-    <section class="container">
-        
+<div class="dot-divider"></div>
+
+<!-- ===== PROJECTS ===== -->
+<section class="section" id="projects" style="opacity:1;transform:none;">
+    <div class="projects-grid">
+
+        <!-- 01 — Interactive Hand Visuals -->
         <div class="project-card">
+            <span class="project-number">01</span>
             <div class="project-media">
-                <img src="data-analytics-project.png" alt="Data Analytics in R Dashboard" class="clickable-img">
+                <video autoplay muted loop playsinline preload="metadata">
+                    <source src="projects/webhands-web.mp4" type="video/mp4">
+                    <source src="projects/webhands.mp4" type="video/mp4">
+                </video>
             </div>
             <div class="project-details">
-                <h3>Applied Data Analytics in R</h3>
+                <h3 class="project-title">Interactive Hand Visuals</h3>
+                <div class="project-subtitle">Creative Technology</div>
+                <div class="tech-stack">
+                    <span class="tech-badge">TouchDesigner</span>
+                    <span class="tech-badge">Real-Time Visuals</span>
+                    <span class="tech-badge">Interactive Media</span>
+                </div>
+                <p class="project-description">Real-time interactive visual system that responds to hand movements, generating dynamic effects driven by gesture input.</p>
+                <button class="project-expand-btn" onclick="toggleProject(this)">+ Details</button>
+                <div class="project-body">
+                    <p class="project-body-label">Overview</p>
+                    <p>Built a real-time visual system in TouchDesigner that captures hand movements and translates them into dynamic, responsive visual effects. The system processes gesture input to drive particle systems, color fields, and geometric transformations in real time.</p>
+                    <p class="project-body-label">My Role</p>
+                    <p>Sole Developer: designed and built the entire visual pipeline, from input capture through real-time rendering.</p>
+                    <p class="project-body-label">Skills Demonstrated</p>
+                    <p>Real-Time Rendering, Node-Based Programming, Interactive System Design, Creative Coding, Visual Effects Pipeline</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- 02 — Motion Blob Tracking -->
+        <div class="project-card">
+            <span class="project-number">02</span>
+            <div class="project-media">
+                <video autoplay muted loop playsinline preload="metadata">
+                    <source src="projects/blobtrack.mp4" type="video/mp4">
+                </video>
+            </div>
+            <div class="project-details">
+                <h3 class="project-title">Motion Blob Tracking</h3>
+                <div class="project-subtitle">Computer Vision</div>
+                <div class="tech-stack">
+                    <span class="tech-badge">TouchDesigner</span>
+                    <span class="tech-badge">Motion Tracking</span>
+                    <span class="tech-badge">Video Processing</span>
+                </div>
+                <p class="project-description">Tracks movement within a video source and applies a dynamic blob-tracking visual effect. Designed to be reapplied to any video input.</p>
+                <button class="project-expand-btn" onclick="toggleProject(this)">+ Details</button>
+                <div class="project-body">
+                    <p class="project-body-label">Overview</p>
+                    <p>Developed a motion-tracking pipeline in TouchDesigner that isolates and tracks movement within a video, then reapplies the effect as a visual overlay. The system is modular and reusable across different video sources, making it a flexible creative tool.</p>
+                    <p class="project-body-label">My Role</p>
+                    <p>Sole Developer: built the full tracking and rendering pipeline.</p>
+                    <p class="project-body-label">Skills Demonstrated</p>
+                    <p>Computer Vision, Motion Detection, Video Post-Processing, Node-Based Programming, Generative Visuals</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- 03 — Clipper -->
+        <div class="project-card">
+            <span class="project-number">03</span>
+            <div class="project-media">
+                <video autoplay muted loop playsinline preload="metadata">
+                    <source src="projects/clipper-web.mp4" type="video/mp4">
+                    <source src="projects/clipper.mp4" type="video/mp4">
+                </video>
+            </div>
+            <div class="project-details">
+                <h3 class="project-title">Clipper</h3>
+                <div class="project-subtitle">Developer Tool</div>
+                <div class="tech-stack">
+                    <span class="tech-badge">Software Development</span>
+                    <span class="tech-badge">Video Processing</span>
+                    <span class="tech-badge">UI/UX Design</span>
+                </div>
+                <p class="project-description">A lightweight MP4 trimming tool built for fast, simple video clipping with a clean, custom-designed interface and branding.</p>
+                <button class="project-expand-btn" onclick="toggleProject(this)">+ Details</button>
+                <div class="project-body">
+                    <p class="project-body-label">Overview</p>
+                    <p>Designed and built a standalone MP4 trimming tool from the ground up, including the full user interface, visual aesthetics, and logo. Clipper provides a fast, no-frills way to trim video clips without heavyweight editing software.</p>
+                    <p class="project-body-label">My Role</p>
+                    <p>Sole Developer &amp; Designer: created the application, interface, and all branding assets.</p>
+                    <p class="project-body-label">Skills Demonstrated</p>
+                    <p>Application Development, UI/UX Design, Branding &amp; Identity, Video Encoding, Tool Design</p>
+                </div>
+                <div class="project-links">
+                    <a href="https://github.com/camelwell/clipper" target="_blank" class="project-link">GitHub Repo &rarr;</a>
+                </div>
+            </div>
+        </div>
+
+        <!-- 04 — Applied Data Analytics in R -->
+        <div class="project-card">
+            <span class="project-number">04</span>
+            <div class="project-media">
+                <img src="projects/data-analytics-project.png" alt="Data Analytics in R — OWCS match statistics dashboard" class="clickable-img">
+            </div>
+            <div class="project-details">
+                <h3 class="project-title">Applied Data Analytics in R</h3>
+                <div class="project-subtitle">Data Science</div>
                 <div class="tech-stack">
                     <span class="tech-badge">R Programming</span>
                     <span class="tech-badge">Data Visualization</span>
-                    <span class="tech-badge">Information Management</span>
+                    <span class="tech-badge">Statistical Analysis</span>
                 </div>
-                
-                <p><strong>Overview:</strong> Analyzed professional match statistics from the Overwatch Champions Series (OWCS) using FaceIT API data to determine the strongest statistical predictors of victory (fragging vs. objective play).</p>
-                <p><strong>My Role:</strong> Lead Data Analyst / Programmer</p>
-                <p><strong>Main Challenges:</strong> Aggregating raw, individual player data from Tank, DPS, and Support roles into cohesive team-level metrics, and ensuring the visualizations accurately challenged conventional game strategies without bias.</p>
-                <p><strong>Skills & Career Prep:</strong> By managing this data purposefully, I learned how to translate raw numbers into actionable visual insights using R. It improved my ability to communicate complex data narratives effectively to target audiences (coaches/analysts), a critical skill for IT strategy and consulting roles.</p>
+                <p class="project-description">Analyzed professional match statistics from the Overwatch Champions Series to determine the strongest statistical predictors of victory.</p>
+                <button class="project-expand-btn" onclick="toggleProject(this)">+ Details</button>
+                <div class="project-body">
+                    <p class="project-body-label">Overview</p>
+                    <p>Analyzed professional match statistics from the Overwatch Champions Series (OWCS) using FaceIT API data to determine the strongest statistical predictors of victory (fragging vs. objective play).</p>
+                    <p class="project-body-label">My Role</p>
+                    <p>Lead Data Analyst / Programmer</p>
+                    <p class="project-body-label">Key Challenges</p>
+                    <p>Aggregating raw, individual player data from Tank, DPS, and Support roles into cohesive team-level metrics, and ensuring the visualizations accurately challenged conventional game strategies without bias.</p>
+                    <p class="project-body-label">Skills &amp; Career Prep</p>
+                    <p>By managing this data purposefully, I learned how to translate raw numbers into actionable visual insights using R. It improved my ability to communicate complex data narratives effectively to target audiences, a critical skill for IT strategy and consulting roles.</p>
+                </div>
             </div>
         </div>
 
+        <!-- 05 — Android Mobile Development -->
         <div class="project-card">
+            <span class="project-number">05</span>
             <div class="project-media">
-                <img src="rss-feed.gif" alt="RSS App">
+                <video autoplay muted loop playsinline preload="metadata">
+                    <source src="projects/rss-feed.mp4" type="video/mp4">
+                </video>
             </div>
             <div class="project-details">
-                <h3>Android Mobile Development</h3>
+                <h3 class="project-title">Android Mobile Development</h3>
+                <div class="project-subtitle">Mobile Engineering</div>
                 <div class="tech-stack">
                     <span class="tech-badge">Java</span>
                     <span class="tech-badge">Android SDK</span>
-                    <span class="tech-badge">Git/Bitbucket</span>
+                    <span class="tech-badge">Git / Bitbucket</span>
                 </div>
-                
-                <p><strong>Overview:</strong> Developed a functional RSS Feed Reader application for Android designed to parse and display live data feeds efficiently with a clean UI/UX.</p>
-                <p><strong>My Role:</strong> Lead Android Developer</p>
-                <p><strong>Main Challenges:</strong> Managing asynchronous data fetching so the live RSS feeds wouldn't block or freeze the main user interface thread, and handling XML parsing errors gracefully.</p>
-                <p><strong>Skills & Career Prep:</strong> I gained hands-on experience with mobile software engineering logic, continuous development, and strict version control (Git). This project prepared me for collaborative development environments by teaching me how to maintain and iterate on a codebase purposefully over time.</p>
-                
-                <div class="repo-links">
-                    <a href="https://bitbucket.org/cje22d/lis4331/src/main/" target="_blank" class="repo-link">LIS4331 Repo &rarr;</a>
-                    <a href="https://bitbucket.org/cje22d/lis4381/src/master/" target="_blank" class="repo-link">LIS4381 Repo &rarr;</a>
+                <p class="project-description">A functional RSS Feed Reader for Android that parses and displays live data feeds with a clean, responsive interface.</p>
+                <button class="project-expand-btn" onclick="toggleProject(this)">+ Details</button>
+                <div class="project-body">
+                    <p class="project-body-label">Overview</p>
+                    <p>Developed a functional RSS Feed Reader application for Android designed to parse and display live data feeds efficiently with a clean UI/UX.</p>
+                    <p class="project-body-label">My Role</p>
+                    <p>Lead Android Developer</p>
+                    <p class="project-body-label">Key Challenges</p>
+                    <p>Managing asynchronous data fetching so the live RSS feeds wouldn't block or freeze the main user interface thread, and handling XML parsing errors gracefully.</p>
+                    <p class="project-body-label">Skills &amp; Career Prep</p>
+                    <p>I gained hands-on experience with mobile software engineering logic, continuous development, and strict version control (Git). This project prepared me for collaborative development environments by teaching me how to maintain and iterate on a codebase purposefully over time.</p>
+                </div>
+                <div class="project-links">
+                    <a href="https://bitbucket.org/cje22d/lis4331/src/main/" target="_blank" class="project-link">LIS4331 Repo &rarr;</a>
+                    <a href="https://bitbucket.org/cje22d/lis4381/src/master/" target="_blank" class="project-link">LIS4381 Repo &rarr;</a>
                 </div>
             </div>
         </div>
 
+        <!-- 06 — Immersive VR Environment -->
         <div class="project-card">
+            <span class="project-number">06</span>
             <div class="project-media">
-                <iframe src="https://www.youtube.com/embed/8rA7FQgvrXU" title="Unity VR Project Demo" allowfullscreen></iframe>
+                <iframe src="https://www.youtube.com/embed/8rA7FQgvrXU" title="Unity VR Project Demo" allowfullscreen loading="lazy"></iframe>
             </div>
             <div class="project-details">
-                <h3>Immersive VR Environment</h3>
+                <h3 class="project-title">Immersive VR Environment</h3>
+                <div class="project-subtitle">Virtual Reality</div>
                 <div class="tech-stack">
                     <span class="tech-badge">Unity 3D</span>
-                    <span class="tech-badge">Virtual Reality</span>
                     <span class="tech-badge">C# Scripting</span>
+                    <span class="tech-badge">Spatial Computing</span>
                 </div>
-                
-                <p><strong>Overview:</strong> Engineered and designed an interactive Virtual Reality environment using Unity 3D, focusing on spatial computing and user experience.</p>
-                <p><strong>My Role:</strong> VR Developer & Environment Designer</p>
-                <p><strong>Main Challenges:</strong> Balancing logical game-engine mechanics with performance optimization. Maintaining high frame rates in VR is crucial to prevent user motion sickness while still delivering high-fidelity spatial design.</p>
-                <p><strong>Skills & Career Prep:</strong> I applied technology innovatively by adopting emerging VR standards. This project honed my spatial problem-solving and C# scripting skills, preparing me for roles that require adapting to and building within cutting-edge tech landscapes.</p>
+                <p class="project-description">An interactive Virtual Reality environment built in Unity 3D, focused on spatial computing and immersive user experience.</p>
+                <button class="project-expand-btn" onclick="toggleProject(this)">+ Details</button>
+                <div class="project-body">
+                    <p class="project-body-label">Overview</p>
+                    <p>Engineered and designed an interactive Virtual Reality environment using Unity 3D, focusing on spatial computing and user experience.</p>
+                    <p class="project-body-label">My Role</p>
+                    <p>VR Developer &amp; Environment Designer</p>
+                    <p class="project-body-label">Key Challenges</p>
+                    <p>Balancing logical game-engine mechanics with performance optimization. Maintaining high frame rates in VR is crucial to prevent user motion sickness while still delivering high-fidelity spatial design.</p>
+                    <p class="project-body-label">Skills &amp; Career Prep</p>
+                    <p>I applied technology innovatively by adopting emerging VR standards. This project honed my spatial problem-solving and C# scripting skills, preparing me for roles that require adapting to and building within cutting-edge tech landscapes.</p>
+                </div>
             </div>
         </div>
 
+        <!-- 07 — Advanced Digital Compositing -->
         <div class="project-card">
+            <span class="project-number">07</span>
             <div class="project-media">
-                <img src="photoshop-project.png" alt="Digital Compositing" class="clickable-img">
+                <img src="projects/photoshop-project.png" alt="Advanced digital compositing — multi-source image blend" class="clickable-img">
             </div>
             <div class="project-details">
-                <h3>Advanced Digital Compositing</h3>
+                <h3 class="project-title">Advanced Digital Compositing</h3>
+                <div class="project-subtitle">Digital Media</div>
                 <div class="tech-stack">
                     <span class="tech-badge">Adobe Photoshop</span>
                     <span class="tech-badge">Graphic Design</span>
                     <span class="tech-badge">Visual Communication</span>
                 </div>
-                
-                <p><strong>Overview:</strong> A professional-grade digital asset utilizing non-destructive editing workflows, advanced layer masking, and color grading to create a cohesive image.</p>
-                <p><strong>My Role:</strong> Graphic Designer / Digital Artist</p>
-                <p><strong>Main Challenges:</strong> Seamlessly blending multiple disparate source images into a single photograph by meticulously matching lighting, shadows, and color temperature.</p>
-                <p><strong>Skills & Career Prep:</strong> This highlights my Adobe Certified proficiency and my eye for visual communication. It proves I can bridge the gap between technical IT infrastructure and front-end creative media, preparing me to work productively with design-focused teams (like UI/UX).</p>
+                <p class="project-description">A professional-grade digital composite utilizing non-destructive editing, advanced masking, and color grading for a seamless final image.</p>
+                <button class="project-expand-btn" onclick="toggleProject(this)">+ Details</button>
+                <div class="project-body">
+                    <p class="project-body-label">Overview</p>
+                    <p>A professional-grade digital asset utilizing non-destructive editing workflows, advanced layer masking, and color grading to create a cohesive image.</p>
+                    <p class="project-body-label">My Role</p>
+                    <p>Graphic Designer / Digital Artist</p>
+                    <p class="project-body-label">Key Challenges</p>
+                    <p>Seamlessly blending multiple disparate source images into a single photograph by meticulously matching lighting, shadows, and color temperature.</p>
+                    <p class="project-body-label">Skills &amp; Career Prep</p>
+                    <p>This highlights my Adobe Certified proficiency and my eye for visual communication. It proves I can bridge the gap between technical IT infrastructure and front-end creative media, preparing me to work productively with design-focused teams.</p>
+                </div>
             </div>
         </div>
 
-    </section>
-
-    <footer>
-        <p>&copy; 2026 Camden Elwell | Tallahassee, FL</p>
-    </footer>
-
-    <div id="imageModal" class="modal">
-        <img class="modal-content" id="enlargedImg" alt="Enlarged Project Preview">
     </div>
+</section>
 
-    <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            const btn = document.getElementById('contactBtn');
-            const dropdown = document.getElementById('contactDropdown');
+<div class="dot-divider"></div>
 
-            btn.addEventListener('click', function(event) {
-                event.preventDefault(); 
-                dropdown.classList.toggle('show');
-                event.stopPropagation(); 
-            });
+<!-- ===== FOOTER ===== -->
+<footer>
+    <p>&copy; 2026 Camden Elwell &middot; Tallahassee, FL</p>
+</footer>
 
-            window.addEventListener('click', function(event) {
-                if (!event.target.matches('#contactBtn') && !dropdown.contains(event.target)) {
-                    if (dropdown.classList.contains('show')) {
-                        dropdown.classList.remove('show');
-                    }
-                }
-            });
+<!-- ===== LIGHTBOX ===== -->
+<div id="imageModal" class="modal">
+    <img class="modal-content" id="enlargedImg" alt="Enlarged Project Preview">
+</div>
+
+<script>
+    /* ---- Staggered scroll-reveal for project cards ---- */
+    const cards = document.querySelectorAll('.project-card');
+    const cardObserver = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.classList.add('visible');
+                cardObserver.unobserve(entry.target);
+            }
         });
+    }, { threshold: 0.08 });
 
-        // --- Image Lightbox Logic ---
-        const modal = document.getElementById('imageModal');
-        const modalImg = document.getElementById('enlargedImg');
-        const clickableImages = document.querySelectorAll('.clickable-img');
+    cards.forEach((card, i) => {
+        card.style.transitionDelay = `${i * 0.1}s`;
+        cardObserver.observe(card);
+    });
 
-        // When a user clicks an image, open the modal and pass the image source
-        clickableImages.forEach(img => {
-            img.addEventListener('click', function() {
-                modal.classList.add('show');
-                modalImg.src = this.src;
-            });
+    /* ---- Scroll-reveal for other sections ---- */
+    const sections = document.querySelectorAll('.section');
+    const sectionObserver = new IntersectionObserver((entries) => {
+        entries.forEach(e => {
+            if (e.isIntersecting) {
+                e.target.classList.add('visible');
+                sectionObserver.unobserve(e.target);
+            }
         });
+    }, { threshold: 0.1 });
+    sections.forEach(s => sectionObserver.observe(s));
 
-        // When the user clicks anywhere on the dark background, close it
-        modal.addEventListener('click', function() {
+    /* ---- Video lazy-play: play in viewport, pause when out ---- */
+    const videoObserver = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            const video = entry.target;
+            if (entry.isIntersecting) {
+                video.play().catch(() => {});
+            } else {
+                video.pause();
+            }
+        });
+    }, { threshold: 0.2 });
+    document.querySelectorAll('.project-media video').forEach(v => {
+        v.pause(); // Pause initially; let observer handle play
+        videoObserver.observe(v);
+    });
+
+    /* ---- Expandable project details ---- */
+    function toggleProject(btn) {
+        const body = btn.nextElementSibling;
+        const isOpen = body.classList.contains('open');
+        body.classList.toggle('open');
+        btn.textContent = isOpen ? '+ Details' : '\u2014 Close';
+    }
+
+    /* ---- Image Lightbox ---- */
+    const modal = document.getElementById('imageModal');
+    const modalImg = document.getElementById('enlargedImg');
+
+    document.querySelectorAll('.clickable-img').forEach(img => {
+        img.addEventListener('click', function() {
+            modal.classList.add('show');
+            modalImg.src = this.src;
+        });
+    });
+
+    modal.addEventListener('click', function() {
+        modal.classList.remove('show');
+        setTimeout(() => { modalImg.src = ''; }, 300);
+    });
+
+    /* Escape key closes lightbox */
+    document.addEventListener('keydown', function(e) {
+        if (e.key === 'Escape' && modal.classList.contains('show')) {
             modal.classList.remove('show');
-            setTimeout(() => { modalImg.src = ''; }, 300); // Clears the image after fading out
-        });
-
-        function copyEmail(event) {
-            event.preventDefault();
-            navigator.clipboard.writeText('camdenelwell@gmail.com');
-            const btn = event.currentTarget;
-            const originalText = btn.innerText;
-            const msg = document.getElementById('copyMsg');
-            
-            btn.innerText = '✅';
-            msg.classList.add('show');
-            
-            setTimeout(() => { 
-                btn.innerText = originalText; 
-                msg.classList.remove('show');
-            }, 2000); 
-            
-            event.stopPropagation(); 
+            setTimeout(() => { modalImg.src = ''; }, 300);
         }
-    </script>
+    });
+
+    /* ---- Contact dropdown ---- */
+    document.getElementById('contactBtn').addEventListener('click', function(e) {
+        e.stopPropagation();
+        document.getElementById('contactDropdown').classList.toggle('show');
+    });
+    window.addEventListener('click', function() {
+        document.getElementById('contactDropdown').classList.remove('show');
+    });
+    document.getElementById('contactDropdown').addEventListener('click', e => e.stopPropagation());
+
+    /* ---- Copy email ---- */
+    function copyEmail(e) {
+        e.stopPropagation();
+        navigator.clipboard.writeText('camdenelwell@gmail.com');
+        const btn = e.currentTarget;
+        const msg = document.getElementById('copyMsg');
+        btn.textContent = '✅';
+        msg.classList.add('show');
+        setTimeout(() => { btn.textContent = '📋'; msg.classList.remove('show'); }, 2000);
+    }
+</script>
 </body>
 </html>

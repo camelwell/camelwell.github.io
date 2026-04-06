@@ -3,172 +3,458 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Camden Elwell - Resume</title>
+    <title>Camden Elwell — Resume</title>
     <link rel="icon" type="image/png" href="favicon.png">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Crimson+Pro:ital,wght@0,300;0,400;0,600;1,300;1,400&family=DM+Mono:wght@400;500&family=IBM+Plex+Mono:wght@500;600&display=swap" rel="stylesheet">
+
     <style>
         :root {
-            --ink-black: #0d1f2d;
-            --blue-slate: #546a7b;
-            --cool-steel: #9ea3b0;
-            --soft-blush: #fae1df;
-            --desert-sand: #e4c3ad;
+            --black:   #0a0a0a;
+            --white:   #fafaf5;
+            --sand:    #e1ce7a;
+            --cream:   #fbffb9;
+            --peach:   #fdd692;
+            --coral:   #ec7357;
+            --brown:   #754f44;
+            --brown-light: #9a6a5c;
         }
 
-        body { font-family: 'Segoe UI', sans-serif; margin: 0; padding: 0; background-color: #f4f4f4; color: var(--ink-black); line-height: 1.6; }
-        a { text-decoration: none; color: var(--blue-slate); transition: color 0.3s ease; }
-        
-        /* Navigation */
-        nav { background-color: var(--ink-black); padding: 0.5rem 5%; display: flex; justify-content: space-between; align-items: center; position: sticky; top: 0; z-index: 1000; }
-        .nav-left { display: flex; align-items: center; gap: 20px; flex-wrap: wrap; }
-        .brand-link { display: flex; flex-direction: row; align-items: center; gap: 15px; text-decoration: none; margin-right: 10px; }
-        .nav-logo { height: 50px; width: auto; display: block; transition: transform 0.3s ease; }
-        .brand-link:hover .nav-logo { transform: scale(1.05); }
-        .brand-text { display: flex; flex-direction: column; justify-content: center; text-align: left; }
-        .brand-name { color: var(--soft-blush); font-size: 1.5rem; font-weight: bold; line-height: 1.2; white-space: nowrap; }
-        .brand-title { color: var(--cool-steel); font-size: 0.9rem; text-transform: uppercase; letter-spacing: 1px; line-height: 1.2; white-space: nowrap; }
-        
-        /* Tab Logic: Keeping order but hiding current */
-        .nav-links { display: flex; gap: 15px; border-left: 2px solid var(--blue-slate); padding-left: 20px; }
-        .nav-label { color: var(--cool-steel); font-weight: bold; text-transform: uppercase; letter-spacing: 1px; font-size: 0.9rem; text-decoration: none; transition: color 0.3s ease;}
-        .nav-label:hover { color: var(--soft-blush); }
-        .nav-resume-link { display: none; } /* Hidden on Resume page */
+        *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+        html { scroll-behavior: smooth; }
 
-        /* Button General Style (From Index) */
-        .btn {
-            background-color: var(--desert-sand);
-            color: var(--ink-black);
-            padding: 12px 25px;
-            border-radius: 5px;
-            font-weight: bold;
-            display: inline-block;
-            border: 2px solid transparent;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            text-decoration: none;
+        body {
+            font-family: 'Crimson Pro', Georgia, serif;
+            background-color: var(--black);
+            color: var(--white);
+            overflow-x: hidden;
         }
-        .btn:hover { background-color: var(--soft-blush); border-color: var(--desert-sand); color: var(--ink-black); }
+
+        a { text-decoration: none; color: inherit; }
+
+        /* ===================== NAV ===================== */
+        nav {
+            position: fixed;
+            top: 0; left: 0; right: 0;
+            z-index: 1000;
+            padding: 0 5%;
+            height: 64px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            background: rgba(10,10,10,0.85);
+            backdrop-filter: blur(12px);
+            border-bottom: 1px solid rgba(225,206,122,0.15);
+            transition: background 0.3s;
+        }
+
+        .nav-brand {
+            display: flex;
+            align-items: center;
+            gap: 14px;
+        }
+
+        .nav-logo {
+            height: 38px;
+            width: auto;
+            display: block;
+        }
+
+        .nav-brand-text .name {
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: 1.4rem;
+            letter-spacing: 2px;
+            color: var(--peach);
+            line-height: 1;
+        }
+
+        .nav-brand-text .title {
+            font-family: 'DM Mono', monospace;
+            font-size: 0.6rem;
+            letter-spacing: 3px;
+            color: var(--sand);
+            text-transform: uppercase;
+        }
+
+        .nav-right {
+            display: flex;
+            align-items: center;
+            gap: 30px;
+        }
+
+        .nav-link {
+            font-family: 'DM Mono', monospace;
+            font-size: 0.7rem;
+            letter-spacing: 2.5px;
+            text-transform: uppercase;
+            color: var(--sand);
+            transition: color 0.25s;
+        }
+        .nav-link:hover { color: var(--coral); }
 
         /* Contact Dropdown */
-        .contact-dropdown { position: relative; display: inline-block; }
-        .contact-dropdown .btn { margin: 0; padding: 8px 20px; }
-        
-        .contact-content {
+        .contact-dropdown { position: relative; }
+
+        .contact-btn {
+            font-family: 'DM Mono', monospace;
+            font-size: 0.7rem;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            padding: 8px 18px;
+            background: var(--coral);
+            color: var(--black);
+            border: none;
+            border-radius: 2px;
+            cursor: pointer;
+            font-weight: 500;
+            transition: background 0.25s;
+        }
+        .contact-btn:hover { background: var(--peach); }
+
+        .contact-panel {
             display: none;
             position: absolute;
             right: 0;
-            top: 120%;
-            background-color: var(--soft-blush);
-            min-width: 260px;
-            box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
-            z-index: 1;
-            border-radius: 8px;
-            padding: 20px;
-            border: 2px solid var(--desert-sand);
+            top: calc(100% + 12px);
+            background: var(--black);
+            border: 1px solid var(--sand);
+            border-radius: 4px;
+            padding: 20px 24px;
+            min-width: 280px;
+            box-shadow: 0 16px 40px rgba(0,0,0,0.5);
         }
+        .contact-panel.show { display: block; }
 
-        .contact-content.show { display: block; }
-        .contact-content p { margin: 8px 0; color: var(--ink-black); font-size: 0.95rem; display: flex; align-items: center; }
-        .contact-content a { font-weight: bold; }
-        .contact-content a:hover { color: var(--ink-black); text-decoration: underline; }
+        .contact-panel p {
+            font-size: 0.95rem;
+            color: var(--white);
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        .contact-panel p:last-child { margin-bottom: 0; }
+        .contact-panel strong {
+            font-family: 'DM Mono', monospace;
+            font-size: 0.65rem;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            color: var(--sand);
+        }
+        .contact-panel a { color: var(--coral); }
+        .contact-panel a:hover { text-decoration: underline; }
 
-        .copy-container { display: inline-flex; align-items: center; position: relative; }
-        .copy-btn { background: none; border: none; cursor: pointer; font-size: 1.1rem; margin-left: 8px; padding: 0; transition: transform 0.2s ease; }
+        .copy-btn {
+            background: none;
+            border: none;
+            cursor: pointer;
+            font-size: 0.9rem;
+            padding: 0;
+            transition: transform 0.2s;
+            margin-left: 4px;
+        }
         .copy-btn:hover { transform: scale(1.2); }
-        .copy-msg { font-size: 0.85rem; color: #2e7d32; font-weight: bold; margin-left: 8px; opacity: 0; transition: opacity 0.3s ease; pointer-events: none; }
+        .copy-msg {
+            font-size: 0.75rem;
+            color: #5cb85c;
+            font-family: 'DM Mono', monospace;
+            opacity: 0;
+            transition: opacity 0.3s;
+        }
         .copy-msg.show { opacity: 1; }
 
-        /* Resume Physical Display */
-        .resume-container { padding: 40px 5%; display: flex; flex-direction: column; align-items: center; gap: 30px; }
-        .resume-page { max-width: 900px; width: 100%; background: white; box-shadow: 0 10px 30px rgba(0,0,0,0.1); border: 1px solid #ddd; }
-        .resume-page img { width: 100%; display: block; }
+        /* ===================== BUTTONS ===================== */
+        .btn-primary {
+            font-family: 'DM Mono', monospace;
+            font-size: 0.7rem;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            padding: 13px 28px;
+            background: var(--coral);
+            color: var(--black);
+            border-radius: 2px;
+            font-weight: 500;
+            transition: background 0.25s, transform 0.2s;
+            display: inline-block;
+        }
+        .btn-primary:hover { background: var(--peach); transform: translateY(-2px); }
 
-        .download-btn { margin: 20px 0 50px; background: var(--blue-slate); color: white; padding: 15px 30px; border-radius: 5px; font-weight: bold; text-decoration: none; }
-        .download-btn:hover { background: var(--ink-black); color: white; }
+        /* ===================== SHARED ===================== */
+        .section {
+            padding: 72px 5%;
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 0.7s ease, transform 0.7s ease;
+        }
+        .section.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
 
-        footer { background-color: var(--ink-black); color: var(--cool-steel); text-align: center; padding: 30px; }
+        .section-label {
+            font-family: 'DM Mono', monospace;
+            font-size: 0.65rem;
+            letter-spacing: 4px;
+            text-transform: uppercase;
+            color: var(--coral);
+            margin-bottom: 12px;
+            display: block;
+        }
+
+        .dot-divider {
+            width: 100%;
+            height: 2px;
+            background-image: radial-gradient(circle, var(--sand) 1px, transparent 1px);
+            background-size: 10px 2px;
+            opacity: 0.3;
+            margin: 0;
+        }
+
+        /* ===================== PAGE HERO ===================== */
+        .page-hero {
+            padding: 150px 5% 72px;
+            text-align: center;
+            opacity: 1;
+            transform: none;
+        }
+
+        .page-hero .section-label {
+            margin-bottom: 14px;
+        }
+
+        .page-hero .page-title {
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: clamp(3.2rem, 8vw, 6rem);
+            line-height: 0.95;
+            letter-spacing: 4px;
+            color: var(--white);
+            margin-bottom: 18px;
+        }
+
+        .page-hero-sub {
+            font-family: 'Crimson Pro', serif;
+            font-size: clamp(1rem, 2vw, 1.25rem);
+            font-style: italic;
+            color: var(--peach);
+            max-width: 580px;
+            margin: 0 auto;
+            line-height: 1.7;
+        }
+
+        /* ===================== RESUME ===================== */
+        .resume-section {
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        .resume-page {
+            border: 1px solid rgba(225,206,122,0.12);
+            border-radius: 3px;
+            overflow: hidden;
+            margin-bottom: 28px;
+            box-shadow: 0 12px 44px rgba(0,0,0,0.45);
+            transition: border-color 0.35s, box-shadow 0.35s;
+            position: relative;
+        }
+        .resume-page:hover {
+            border-color: rgba(236,115,87,0.3);
+            box-shadow: 0 16px 56px rgba(0,0,0,0.55);
+        }
+
+        /* Left accent bar matching project cards */
+        .resume-page::before {
+            content: '';
+            position: absolute;
+            left: 0; top: 0; bottom: 0;
+            width: 3px;
+            background: var(--brown);
+            transition: background 0.3s;
+            z-index: 2;
+        }
+        .resume-page:hover::before {
+            background: var(--coral);
+        }
+
+        .resume-page img {
+            width: 100%;
+            display: block;
+            cursor: zoom-in;
+        }
+
+        .download-section {
+            text-align: center;
+            padding: 44px 0 0;
+        }
+
+        /* ===================== FOOTER ===================== */
+        footer {
+            background: var(--black);
+            border-top: 1px solid rgba(225,206,122,0.12);
+            padding: 40px 5%;
+            text-align: center;
+        }
+        footer p {
+            font-family: 'DM Mono', monospace;
+            font-size: 0.65rem;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            color: rgba(225,206,122,0.4);
+        }
+
+        /* ===================== LIGHTBOX ===================== */
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 2000;
+            inset: 0;
+            background: rgba(10,10,10,0.92);
+            backdrop-filter: blur(8px);
+            cursor: zoom-out;
+        }
+        .modal.show {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .modal-content {
+            max-width: 92%;
+            max-height: 92vh;
+            border-radius: 3px;
+            border: 1px solid rgba(225,206,122,0.15);
+            cursor: default;
+        }
+
+        /* ===================== RESPONSIVE ===================== */
+        @media (max-width: 600px) {
+            .nav-link { display: none; }
+            .page-hero { padding: 120px 5% 56px; }
+            .resume-section { padding: 0 2%; }
+        }
     </style>
 </head>
 <body>
-    <nav>
-        <div class="nav-left">
-            <a href="index.html" class="brand-link">
-                <img src="camelwell.png" alt="Camden Elwell Logo" class="nav-logo">
-                <div class="brand-text">
-                    <span class="brand-name">Camden Elwell</span>
-                    <span class="brand-title">IT Portfolio</span>
-                </div>
-            </a>
-            <div class="nav-links">
-                <a href="index_1.html" class="nav-label" style="color:var(--soft-blush)">&#9733; New Home</a>
-                <a href="index.html" class="nav-label">Home</a>
-                <a href="projects.html" class="nav-label">Projects</a>
-                <a href="resume.html" class="nav-label nav-resume-link">Resume</a>
-            </div>
+
+<!-- ===== NAV ===== -->
+<nav>
+    <a href="index.html" class="nav-brand">
+        <img src="camelwell.png" alt="Camelwell logo" class="nav-logo">
+        <div class="nav-brand-text">
+            <div class="name">Camden Elwell</div>
+            <div class="title">IT Portfolio</div>
         </div>
-        
+    </a>
+
+    <div class="nav-right">
+        <a href="index.html" class="nav-link">Home</a>
+        <a href="projects.html" class="nav-link">Projects</a>
         <div class="contact-dropdown">
-            <a href="#" class="btn" id="contactBtn">Contact</a>
-            <div class="contact-content" id="contactDropdown">
+            <button class="contact-btn" id="contactBtn">Contact</button>
+            <div class="contact-panel" id="contactDropdown">
                 <p>
-                    <strong>Email:</strong> &nbsp;<a href="mailto:camdenelwell@gmail.com">camdenelwell@gmail.com</a>
-                    <span class="copy-container">
-                        <button class="copy-btn" onclick="copyEmail(event)" title="Copy Email">📋</button>
-                        <span class="copy-msg" id="copyMsg">Copied!</span>
-                    </span>
+                    <strong>Email</strong>
+                    <a href="mailto:camdenelwell@gmail.com">camdenelwell@gmail.com</a>
+                    <button class="copy-btn" onclick="copyEmail(event)" title="Copy">📋</button>
+                    <span class="copy-msg" id="copyMsg">Copied!</span>
                 </p>
-                <p><strong>Phone:</strong> &nbsp;(772) 643-5646</p>
-                <p><strong>Location:</strong> &nbsp;Tallahassee, FL</p>
+                <p><strong>Phone</strong> (772) 643-5646</p>
+                <p><strong>Location</strong> Tallahassee, FL</p>
             </div>
         </div>
-    </nav>
-
-    <div class="resume-container">
-        <div class="resume-page"><img src="resume-page1.png" alt="Resume Page 1"></div>
-        <div class="resume-page"><img src="resume-page2.png" alt="Resume Page 2"></div>
-        <a href="resume.pdf" class="download-btn" download>Download PDF Instead</a>
     </div>
+</nav>
 
-    <footer>
-        <p>&copy; 2026 Camden Elwell | Tallahassee, FL</p>
-    </footer>
+<!-- ===== PAGE HERO ===== -->
+<section class="page-hero">
+    <span class="section-label">Document</span>
+    <h1 class="page-title">Resume</h1>
+    <p class="page-hero-sub">A detailed overview of my education, experience, technical skills, and community involvement.</p>
+</section>
 
-    <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            const btn = document.getElementById('contactBtn');
-            const dropdown = document.getElementById('contactDropdown');
+<div class="dot-divider"></div>
 
-            btn.addEventListener('click', function(event) {
-                event.preventDefault(); 
-                dropdown.classList.toggle('show');
-                event.stopPropagation(); 
-            });
+<!-- ===== RESUME ===== -->
+<section class="section resume-section" id="resume">
+    <div class="resume-page">
+        <img src="resume-page1.png" alt="Resume Page 1 — Education, Skills, and Experience" class="clickable-img">
+    </div>
+    <div class="resume-page">
+        <img src="resume-page2.png" alt="Resume Page 2 — Activities, Community Service, and References" class="clickable-img">
+    </div>
+    <div class="download-section">
+        <a href="resume.pdf" class="btn-primary" download="camden_elwell_resume.pdf">Download PDF</a>
+    </div>
+</section>
 
-            window.addEventListener('click', function(event) {
-                if (!event.target.matches('#contactBtn') && !dropdown.contains(event.target)) {
-                    if (dropdown.classList.contains('show')) {
-                        dropdown.classList.remove('show');
-                    }
-                }
-            });
+<div class="dot-divider"></div>
+
+<!-- ===== FOOTER ===== -->
+<footer>
+    <p>&copy; 2026 Camden Elwell &middot; Tallahassee, FL</p>
+</footer>
+
+<!-- ===== LIGHTBOX ===== -->
+<div id="imageModal" class="modal">
+    <img class="modal-content" id="enlargedImg" alt="Enlarged Resume Page">
+</div>
+
+<script>
+    /* ---- Scroll-reveal ---- */
+    const sections = document.querySelectorAll('.section');
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(e => {
+            if (e.isIntersecting) {
+                e.target.classList.add('visible');
+                observer.unobserve(e.target);
+            }
         });
+    }, { threshold: 0.1 });
+    sections.forEach(s => observer.observe(s));
 
-        function copyEmail(event) {
-            event.preventDefault();
-            navigator.clipboard.writeText('camdenelwell@gmail.com');
-            const btn = event.currentTarget;
-            const originalText = btn.innerText;
-            const msg = document.getElementById('copyMsg');
-            
-            btn.innerText = '✅';
-            msg.classList.add('show');
-            
-            setTimeout(() => { 
-                btn.innerText = originalText; 
-                msg.classList.remove('show');
-            }, 2000); 
-            
-            event.stopPropagation(); 
+    /* ---- Image Lightbox ---- */
+    const modal = document.getElementById('imageModal');
+    const modalImg = document.getElementById('enlargedImg');
+
+    document.querySelectorAll('.clickable-img').forEach(img => {
+        img.addEventListener('click', function() {
+            modal.classList.add('show');
+            modalImg.src = this.src;
+        });
+    });
+
+    modal.addEventListener('click', function() {
+        modal.classList.remove('show');
+        setTimeout(() => { modalImg.src = ''; }, 300);
+    });
+
+    /* Escape key closes lightbox */
+    document.addEventListener('keydown', function(e) {
+        if (e.key === 'Escape' && modal.classList.contains('show')) {
+            modal.classList.remove('show');
+            setTimeout(() => { modalImg.src = ''; }, 300);
         }
-    </script>
+    });
+
+    /* ---- Contact dropdown ---- */
+    document.getElementById('contactBtn').addEventListener('click', function(e) {
+        e.stopPropagation();
+        document.getElementById('contactDropdown').classList.toggle('show');
+    });
+    window.addEventListener('click', function() {
+        document.getElementById('contactDropdown').classList.remove('show');
+    });
+    document.getElementById('contactDropdown').addEventListener('click', e => e.stopPropagation());
+
+    /* ---- Copy email ---- */
+    function copyEmail(e) {
+        e.stopPropagation();
+        navigator.clipboard.writeText('camdenelwell@gmail.com');
+        const btn = e.currentTarget;
+        const msg = document.getElementById('copyMsg');
+        btn.textContent = '✅';
+        msg.classList.add('show');
+        setTimeout(() => { btn.textContent = '📋'; msg.classList.remove('show'); }, 2000);
+    }
+</script>
 </body>
 </html>
